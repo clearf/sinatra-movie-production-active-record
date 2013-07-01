@@ -70,7 +70,11 @@ end
 
 get '/todos/:id/edit' do 
 	sql = "SELECT * FROM tasks WHERE id = #{params[:id]}"
+	movies_sql = "SELECT * FROM movies" 
+	people_sql = "SELECT * FROM people"
 	@todo = run_sql(sql).first
+	@movies = run_sql(movies_sql)
+	@people = run_sql(people_sql)
 	erb :edit_todo
 end
 

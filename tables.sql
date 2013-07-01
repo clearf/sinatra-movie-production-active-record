@@ -26,7 +26,7 @@ CREATE TABLE tasks
 	due VARCHAR(30),
 	urgent BOOLEAN,
 	complete BOOLEAN DEFAULT FALSE,
-	director_id INT REFERENCES people(id),
+	person_id INT REFERENCES people(id),
 	movie_id INT REFERENCES movies(id)
 );
 
@@ -35,4 +35,4 @@ INSERT INTO tasks (task, details, due, urgent) VALUES ('settle budget conflict',
 INSERT INTO people (name, email) VALUES ('James Cameron', 'lensFlares@gmail.com');
 INSERT INTO people (name, email) VALUES ('M. Night Shamalan', 'seriesCrusher@gmail.com');
 INSERT INTO movies (title, description, director_id) VALUES ('Avatar 2', 'A sequel to Avatar', 1);
-INSERT INTO movies (title, description ,director_id) VALUES ('Some Weird Movie', ' It is by M Night Shamalan, after all' 2);
+INSERT INTO movies (title, description ,director_id) VALUES ('Some Weird Movie', ' It is by M Night Shamalan, after all', 2);
