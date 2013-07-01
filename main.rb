@@ -97,14 +97,26 @@ end
 
 #################### End Task Specific Routes #########################
 
+# lists all of the movies currently listed as in production
 get '/movies' do 
 	sql = "SELECT * FROM movies WHERE id != 1"
 	@movies = run_sql(sql)
 	erb :movies
 end
 
+post '/movies' do
+	sql = "INSERT INTO movies (title, description, director_id) VALUES "\
+	"('#{params[:title]}', '#{params[:description]}', #{params[:director_id]})"
+	run_sql(sql)
+	redirect to('/movies')
+end
 
-
+# adds a new movie to the movies in production
+get '/movies/new' do
+	people_sql = "SELECT * FROM people"
+	@people = run_sql(people_sql)
+	erb :new_movie
+end
 
 
 

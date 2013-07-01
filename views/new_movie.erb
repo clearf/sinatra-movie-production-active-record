@@ -1,0 +1,14 @@
+<form action = '/movies' method = "post">
+	<input type="text" name="title" placeholder="title"><br>
+	<input type="text" name="description"placeholder="description"><br>
+	<label for="director_id"> Director <br>
+		<select name = "director_id">
+			<%@people.each do |person|%>
+				<option value = "<%=person["id"]%>">
+					<%=person["name"] %>
+				</option>
+			<%end%>
+		</select>
+	</label><br>
+	<button> Add Movie</button>
+</form>
