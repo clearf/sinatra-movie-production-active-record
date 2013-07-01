@@ -45,7 +45,12 @@ get '/people/:id' do
   erb :person
 end
 
-
+# This should list tasks
+get '/tasks' do
+  sql_input = "SELECT * FROM tasks"
+  @tasks = run_sql(sql_input)
+  erb :todos
+end
 
 
 
