@@ -22,6 +22,20 @@ get '/movies' do
   erb :movies
 end
 
+# This should add a new movie
+get '/movies/new' do
+  erb :new_movie
+end
+
+# This should send a post request to this url
+post '/movies/new' do
+  movie_name = params[:movie_name]
+  release_date = params[:release_date]
+  sql_input = "INSERT INTO movies (movie_name, release_date) VALUES ('#{movie_name}', '#{release_date}')"
+  run_sql(sql_input)
+  redirect to('/movies')
+end
+
 # This should show details of a single movie
 get '/movies/:id' do
   id = params[:id]
