@@ -14,3 +14,9 @@ end
 get '/' do
   erb :index
 end
+
+get '/movies' do
+  sql_input = "SELECT * FROM movies"
+  @movies = run_sql(sql_input)
+  erb :movies
+end
