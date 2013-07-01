@@ -31,9 +31,9 @@ post '/todos' do
 	else 
 		urgent = true
 	end
-	sql = "INSERT INTO tasks (task, details, due, urgent) VALUES "\
-	"('#{params[:task]}', '#{params[:details]}', '#{params[:due]}', "\
-	" '#{urgent}')"
+	sql = "INSERT INTO tasks (task, details, due, urgent, person_id, movie_id)"\
+	" VALUES ('#{params[:task]}', '#{params[:details]}', '#{params[:due]}', "\
+	" '#{urgent}', #{params[:person_id]}, #{params[:movie_id]})"
 	run_sql(sql)
 	redirect to('/todos')
 end
@@ -61,9 +61,10 @@ post '/todos/:id' do
 	else 
 		urgent = true
 	end
-	sql = "UPDATE tasks SET (task, details, due, urgent) = "\
-	"('#{params[:task]}', '#{params[:details]}', '#{params[:due]}', "\
-	" '#{urgent}') WHERE id = #{params[:id]}"
+		sql = "UPDATE tasks (task, details, due, urgent, person_id, movie_id)"\
+	" = ('#{params[:task]}', '#{params[:details]}', '#{params[:due]}', "\
+	" '#{urgent}', #{params[:person_id]}, #{params[:movie_id]} WHERE id = "\
+	" #{params[:id]})"
 	run_sql(sql)
 	redirect to('/todos')
 end
