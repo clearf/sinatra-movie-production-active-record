@@ -58,6 +58,21 @@ get '/people/new' do
   erb :new_person
 end
 
+# This should send a post request to the url
+post '/people/new' do
+  person_name = params[:person_name]
+  director = params[:director]
+  if director == "yes"
+    director = true
+  else
+    director = false
+  end
+  movie_id = params[:movie_id]
+  sql_input = "INSERT INTO people (person_name, director, movie_id) VALUES ('#{person_name}', #{director}, #{movie_id})"
+  run_sql(sql_input)
+  redirect to('/people')
+end
+
 # This should show details of a single person
 get '/people/:id' do
   id = params[:id]
