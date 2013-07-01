@@ -21,3 +21,7 @@ get '/todos' do
 	@todos = run_sql(sql)
 	erb :todos
 end
+
+get '/todo/:id' do 
+	
+end
