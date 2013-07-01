@@ -52,5 +52,11 @@ get '/tasks' do
   erb :todos
 end
 
-
+# This should list a single task
+get '/tasks/:id' do
+  id = params[:id]
+  sql_input = "SELECT * FROM tasks WHERE id = #{id}"
+  @task = run_sql(sql_input).first
+  erb :todo
+end
 
