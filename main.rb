@@ -50,6 +50,10 @@ end
 get '/todos/:id' do
 	sql = "SELECT * FROM tasks WHERE id = #{params[:id]}"
 	@todo = run_sql(sql).first
+	person_sql = "SELECT * FROM people WHERE id = #{@todo['person_id']}"
+	movie_sql = "SELECT * FROM movies WHERE id = #{@todo['movie_id']}"
+	@person = run_sql(person_sql).first
+	@movie = run_sql(movie_sql).first
 	erb :todo 
 end
 
@@ -61,10 +65,10 @@ post '/todos/:id' do
 	else 
 		urgent = true
 	end
-		sql = "UPDATE tasks (task, details, due, urgent, person_id, movie_id)"\
+		sql = "UPDATE tasks SET (task, details, due, urgent, person_id, movie_id)"\
 	" = ('#{params[:task]}', '#{params[:details]}', '#{params[:due]}', "\
-	" '#{urgent}', #{params[:person_id]}, #{params[:movie_id]} WHERE id = "\
-	" #{params[:id]})"
+	" '#{urgent}', #{params[:person_id]}, #{params[:movie_id]}) WHERE id = "\
+	" #{params[:id]}"
 	run_sql(sql)
 	redirect to('/todos')
 end
