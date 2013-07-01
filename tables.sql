@@ -15,7 +15,7 @@ CREATE TABLE movies
 	id SERIAL PRIMARY KEY,
 	title VARCHAR(255),
 	description TEXT,
-	director_id INT REFERENCES people(id) DEFAULT 1
+	director_id INT REFERENCES people(id)
 );
 
 CREATE TABLE tasks
@@ -26,15 +26,15 @@ CREATE TABLE tasks
 	due VARCHAR(30),
 	urgent BOOLEAN,
 	complete BOOLEAN DEFAULT FALSE,
-	person_id INT REFERENCES people(id) DEFAULT 1
-	movie_id INT REFERENCES movies(id) DEFAULT 1
+	person_id INT REFERENCES people(id),
+	movie_id INT REFERENCES movies(id) 
 );
 
-INSERT INTO tasks (task, details, due, urgent) VALUES ('film forest scene', 'grab actors after lunch and go film the scene', 'yesterday', 'true');
-INSERT INTO tasks (task, details, due, urgent) VALUES ('settle budget conflict', 'meet with business manager', '07/22/2013', 'false');
 INSERT INTO people (name, email) VALUES ('No One Yet', 'A person has not been selected');
 INSERT INTO people (name, email) VALUES ('James Cameron', 'lensFlares@gmail.com');
 INSERT INTO people (name, email) VALUES ('M. Night Shamalan', 'seriesCrusher@gmail.com');
-INSERT INTO movies (title, description, director_id) VALUES ('No movie yet', 'A movie has not been selected');
+INSERT INTO movies (title, description) VALUES ('No movie yet', 'A movie has not been selected');
 INSERT INTO movies (title, description, director_id) VALUES ('Avatar 2', 'A sequel to Avatar', 1);
 INSERT INTO movies (title, description ,director_id) VALUES ('Some Weird Movie', ' It is by M Night Shamalan, after all', 2);
+INSERT INTO tasks (task, details, due, urgent, person_id, movie_id) VALUES ('film forest scene', 'grab actors after lunch and go film the scene', 'yesterday', 'true', 1, 1);
+INSERT INTO tasks (task, details, due, urgent, person_id, movie_id) VALUES ('settle budget conflict', 'meet with business manager', '07/22/2013', 'false', 1, 1);
