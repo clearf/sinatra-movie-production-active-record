@@ -119,10 +119,12 @@ get '/movies/new' do
 end
 
 
-
-
-
-
+get '/movies/:id' do 
+	sql = "SELECT * FROM movies WHERE id = #{params[:id]}"
+	@movie = run_sql(sql).first
+	director_sql = "SELECT * FROM movies WHERE id = #{@movie["director_id"]}"
+	
+end
 
 
 
