@@ -3,7 +3,7 @@ require 'pg'
 require 'sinatra'
 require 'sinatra/reloader' if development?
 
-
+# helper function that runs an input sql string
 def run_sql(sql)
 	db = PG.connect(dbname: 'production', host: 'localhost')
 	result = db.exec(sql)
@@ -16,12 +16,14 @@ get '/' do
 
 end
 
+# lists all of the tasks that require completion
 get '/todos' do
 	sql = "SELECT * FROM tasks"
 	@todos = run_sql(sql)
 	erb :todos
 end
 
+# adds a new todo to the lists of tasks to be done
 post '/todos' do 
 	urgent = params[:urgent]
 	if urgent == "on"
@@ -36,14 +38,17 @@ post '/todos' do
 	redirect to('/todos')
 end
 
+# shows the details of a task
 get '/todos/:id' do
 	sql = "SELECT * FROM tasks WHERE id = #{params[:id]}"
 	@todo = run_sql(sql).first
 	erb :todo 
 end
 
+# updates the details of a task
 post '/todos/:id' do 
 	urgent = params[:urgent]
+	binding.pry
 	if urgent == "on"
 		urgent = true
 	else
@@ -56,6 +61,7 @@ post '/todos/:id' do
 	redirect to('/todos')
 end
 
+# 
 get '/todos/new' do 
 	people_sql = "SELECT * FROM people"
 	movies_sql = "SELECT * FROM movies"
@@ -69,5 +75,4 @@ get '/todos/:id/edit' do
 	@todo = run_sql(sql).first
 	erb :edit_todo
 end
-
 
