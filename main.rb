@@ -18,6 +18,6 @@ end
 
 get '/todos' do
 	sql = "SELECT * FROM tasks"
-	@tasks = run_sql(sql)
-	erb :tot=
+	@todos = run_sql(sql)
+	erb :todos
 end

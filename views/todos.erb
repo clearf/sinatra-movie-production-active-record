@@ -1,1 +1,3 @@
-<%=@todos.inspect%>
+<%@todos.each do |todo|%>
+	<%= todo %><br>
+<%end%>
