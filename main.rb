@@ -11,7 +11,6 @@ def run_sql(sql)
 	result
 end
 
-
 get '/' do
 
 end
@@ -89,9 +88,31 @@ get '/todos/:id/edit' do
 	erb :edit_todo
 end
 
-
+# deletes a task
 get '/todos/:id/delete' do
 	sql = "DELETE FROM tasks WHERE id = #{params[:id]}"
 	run_sql(sql)
 	redirect to('/todos')
 end
+
+#################### End Task Specific Routes #########################
+
+get '/movies' do 
+	sql = "SELECT * FROM movies"
+	@movies = run_sql(sql)
+	erb :movies
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+

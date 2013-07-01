@@ -1,0 +1,4 @@
+<%@movies.each do |movie|%>
+	<a href = '/movies/<%=movie["id"]%>'><%=movie["title"]%> </a><br>
+<%end%>
+<a href = 'movies/new'>New Todo</a>
