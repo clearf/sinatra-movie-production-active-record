@@ -7,14 +7,14 @@
 	</label><br>
 	<select name = "person_id">
 		<%@people.each do |person|%>
-			<option value = "<%=person["id"]%>">
+			<option value = "<%=person["id"]%>" selected = "<%=@current_person['name']%>">
 				<%=person["name"] %>
 			</option>
 		<%end%>
 	</select><br>
 	<select name = "movie_id">
 		<%@movies.each do |movie|%>
-			<option value = "<%=movie["id"]%>">
+			<option value = "<%=movie["id"]%>" selected = "<%=@current_person['name']%>">
 				<%=movie["title"] %>
 			</option>
 		<%end%>

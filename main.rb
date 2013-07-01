@@ -38,6 +38,7 @@ post '/todos' do
 	redirect to('/todos')
 end
 
+# gets the necessary data to create a new task item (people and movies)
 get '/todos/new' do
 	movies_sql = "SELECT * FROM movies" 
 	people_sql = "SELECT * FROM people"
@@ -73,6 +74,7 @@ post '/todos/:id' do
 	redirect to('/todos')
 end
 
+# retrieves the necessary data to update a task (people, movies, task details)
 get '/todos/:id/edit' do 
 	sql = "SELECT * FROM tasks WHERE id = #{params[:id]}"
 	movies_sql = "SELECT * FROM movies" 
@@ -80,8 +82,13 @@ get '/todos/:id/edit' do
 	@todo = run_sql(sql).first
 	@movies = run_sql(movies_sql)
 	@people = run_sql(people_sql)
+	current_person_sql = "SELECT * from people WHERE id = #{@todo['person_id']}"
+	current_movie_sql = "SELECT * FROM people WHERE id = #{@todo['movie_id']}"
+	@current_person = run_sql(current_person_sql).first
+	@current_movie = run_sql(current_movie_sql).first
 	erb :edit_todo
 end
+
 
 get '/todos/:id/delete' do
 	sql = "DELETE FROM tasks WHERE id = #{params[:id]}"
