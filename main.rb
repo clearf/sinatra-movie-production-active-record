@@ -29,3 +29,10 @@ get '/movies/:id' do
   @movie = run_sql(sql_input).first
   erb :movie
 end
+
+# This should list people
+get '/people' do
+  sql_input = "SELECT * FROM people"
+  @people = run_sql(sql_input)
+  erb :people
+end
