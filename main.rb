@@ -14,5 +14,7 @@ end
 
 
 get '/' do
-
+	sql = "SELECT * FROM tasks;"
+	@tasks = exec_sql(sql)
+	erb :todos
 end
