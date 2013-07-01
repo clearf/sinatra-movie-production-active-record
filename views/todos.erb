@@ -1,4 +1,6 @@
-<%@todos.each do |todo|%>
-	<a href = '/todos/<%=todo["id"]%>'><%=todo["task"]%> </a><br>
-<%end%>
-<a href = 'todos/new'>New Todo</a>
+<ul>
+	<%@todos.each do |todo|%>
+		<a href = '/todos/<%=todo["id"]%>'><%=todo["task"]%> </a><br>
+	<%end%>
+</ul>
+<a href = 'todos/new'>New Todo</a><br>

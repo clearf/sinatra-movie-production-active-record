@@ -98,7 +98,7 @@ end
 #################### End Task Specific Routes #########################
 
 get '/movies' do 
-	sql = "SELECT * FROM movies"
+	sql = "SELECT * FROM movies WHERE id != 1"
 	@movies = run_sql(sql)
 	erb :movies
 end
