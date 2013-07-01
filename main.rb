@@ -22,6 +22,3 @@ get '/todos' do
 	erb :todos
 end
 
-get '/todo/:id' do 
-	
-end
