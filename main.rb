@@ -22,3 +22,10 @@ get '/todos' do
 	erb :todos
 end
 
+get '/todos/new' do 
+	people_sql = "SELECT * FROM people"
+	movies_sql = "SELECT * FROM movies"
+	@people = run_sql(people_sql)
+	@movies = run_sql(movies_sql)
+	erb :new_todo
+end
