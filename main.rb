@@ -39,7 +39,7 @@ end
 get '/todos/:id' do
 	sql = "SELECT * FROM tasks WHERE id = #{params[:id]}"
 	@todo = run_sql(sql).first
-	erb :todo
+	erb :todo 
 end
 
 get '/todos/new' do 
@@ -50,7 +50,7 @@ get '/todos/new' do
 	erb :new_todo
 end
 
-get '/todos/edit' do 
+get '/todos/:id/edit' do 
 	people_sql = "SELECT * FROM people"
 	movies_sql = "SELECT * FROM movies"
 	@people = run_sql(people_sql)
