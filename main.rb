@@ -42,6 +42,20 @@ get '/todos/:id' do
 	erb :todo 
 end
 
+post '/todos/:id' do 
+	urgent = params[:urgent]
+	if urgent == "on"
+		urgent = true
+	else
+		urgent = false
+	end
+	sql = "UPDATE tasks SET (task, details, due, urgent) = "\
+	"('#{params[:task]}', '#{params[:details]}', '#{params[:due]}', "\
+	" '#{params[:urgent]}') WHERE id = #{params[:id]}"
+	run_sql(sql)
+	redirect to('/todos')
+end
+
 get '/todos/new' do 
 	people_sql = "SELECT * FROM people"
 	movies_sql = "SELECT * FROM movies"
@@ -51,12 +65,9 @@ get '/todos/new' do
 end
 
 get '/todos/:id/edit' do 
-	people_sql = "SELECT * FROM people"
-	movies_sql = "SELECT * FROM movies"
-	@people = run_sql(people_sql)
-	@movies = run_sql(movies_sql)
+	sql = "SELECT * FROM tasks WHERE id = #{params[:id]}"
+	@todo = run_sql(sql).first
 	erb :edit_todo
 end
-
 
 

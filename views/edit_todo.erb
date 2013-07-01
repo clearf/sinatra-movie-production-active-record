@@ -1,7 +1,7 @@
-<form action = "/todos" method = "post">
-	<input type = "text" name = "task" value = "<%@todo["task"]%>"><br>
-	<input type = "text" name = "details" value = "<%@todo["details"]%>"><br>
-	<input type = "text" name = "due" value = "<%@todo["duedate"]%>"><br>
+<form action = "/todos/<%=@todo['id']%>" method = "post">
+	<input type = "text" name = "task" value = "<%=@todo["task"]%>"><br>
+	<input type = "text" name = "details" value = "<%=@todo["details"]%>"><br>
+	<input type = "text" name = "due" value = "<%=@todo["due"]%>"><br>
 	<label for="urgent">
 		<input type = "radio" name = "urgent"> Urgent
 	</label><br>
