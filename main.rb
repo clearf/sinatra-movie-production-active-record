@@ -22,6 +22,14 @@ get '/todos' do
 	erb :todos
 end
 
+post '/todos' do 
+	sql = "INSERT INTO tasks (task, details, due, urgent) VALUES "\
+	"('#{params[:task]}', '#{params[:details]}', '#{params[:due]}', "\
+	" '#{params[:urgent]}')"
+	run_sql(sql)
+	redirect to('/todos')
+end
+
 get '/todos/new' do 
 	people_sql = "SELECT * FROM people"
 	movies_sql = "SELECT * FROM movies"

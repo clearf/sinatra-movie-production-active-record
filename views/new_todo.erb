@@ -1,10 +1,12 @@
-<form action = "todos" method = post>
-	<input type = "text" name = "task" placeholder = "task">
-	<input type = "text" name = "details" placeholder = "details">
+<form action = "/todos" method = "post">
+	<input type = "text" name = "task" placeholder = "task"><br>
+	<input type = "text" name = "details" placeholder = "details"><br>
+	<input type = "text" name = "due" placeholder = "duedate"><br>
 	<label for="urgent">
 		<input type = "radio" name = "urgent" value = "true"> Urgent
-	</label>
+	</label><br>
 	<label for="urgent">
 		<input type = "radio" name = "urgent" value = "false"> Not Urgent
-	</label>
+	</label><br>
+	<button> Add Task </button>
 </form>
