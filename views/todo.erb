@@ -1,0 +1,10 @@
+<%=@todo["task"]%><br>
+<%=@todo["details"]%> <br>
+<%=@todo["due"]%> <br>
+<p>Urgent: 
+	<% if @todo["urgent"] == 't' %>
+		Yes
+	<%else%>
+		No
+	<%end%> 
+</p>
