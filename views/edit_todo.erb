@@ -1,0 +1,12 @@
+<form action = "/todos" method = "post">
+	<input type = "text" name = "task" value = "<%@todo["task"]%>"><br>
+	<input type = "text" name = "details" value = "<%@todo["details"]%>"><br>
+	<input type = "text" name = "due" value = "<%@todo["duedate"]%>"><br>
+	<label for="urgent">
+		<input type = "radio" name = "urgent" value = "true"> Urgent
+	</label><br>
+	<label for="urgent">
+		<input type = "radio" name = "urgent" value = "false"> Not Urgent
+	</label><br>
+	<button> Add Task </button>
+</form>
