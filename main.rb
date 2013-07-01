@@ -26,14 +26,14 @@ end
 # adds a new todo to the lists of tasks to be done
 post '/todos' do 
 	urgent = params[:urgent]
-	if urgent == "on"
-		urgent = true
-	else
+	if urgent.nil?
 		urgent = false
+	else 
+		urgent = true
 	end
 	sql = "INSERT INTO tasks (task, details, due, urgent) VALUES "\
 	"('#{params[:task]}', '#{params[:details]}', '#{params[:due]}', "\
-	" '#{params[:urgent]}')"
+	" '#{urgent}')"
 	run_sql(sql)
 	redirect to('/todos')
 end
@@ -48,25 +48,20 @@ end
 # updates the details of a task
 post '/todos/:id' do 
 	urgent = params[:urgent]
-	binding.pry
-	if urgent == "on"
-		urgent = true
-	else
+	if urgent.nil?
 		urgent = false
+	else 
+		urgent = true
 	end
 	sql = "UPDATE tasks SET (task, details, due, urgent) = "\
 	"('#{params[:task]}', '#{params[:details]}', '#{params[:due]}', "\
-	" '#{params[:urgent]}') WHERE id = #{params[:id]}"
+	" '#{urgent}') WHERE id = #{params[:id]}"
 	run_sql(sql)
 	redirect to('/todos')
 end
 
 # 
 get '/todos/new' do 
-	people_sql = "SELECT * FROM people"
-	movies_sql = "SELECT * FROM movies"
-	@people = run_sql(people_sql)
-	@movies = run_sql(movies_sql)
 	erb :new_todo
 end
 
