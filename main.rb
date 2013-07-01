@@ -1,7 +1,7 @@
 require 'pry'
 require 'pg'
-require 'postgres'
-require 'postgres/reloader' if development?
+require 'sinatra'
+require 'sinatra/reloader' if development?
 
 helpers do 
 	def exec_sql(sql)
