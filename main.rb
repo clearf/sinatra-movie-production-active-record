@@ -51,6 +51,13 @@ get '/people' do
   erb :people
 end
 
+# This should add a new person. This also makes movie names available to assign a new person to.
+get '/people/new' do
+  sql_input = "SELECT id, movie_name FROM movies"
+  @movies = run_sql(sql_input)
+  erb :new_person
+end
+
 # This should show details of a single person
 get '/people/:id' do
   id = params[:id]
