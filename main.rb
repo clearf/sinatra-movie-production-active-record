@@ -15,8 +15,17 @@ get '/' do
   erb :index
 end
 
+# This should list movies
 get '/movies' do
   sql_input = "SELECT * FROM movies"
   @movies = run_sql(sql_input)
   erb :movies
+end
+
+# This should show details of a single movie
+get '/movies/:id' do
+  id = params[:id]
+  sql_input = "SELECT * FROM movies WHERE id = #{id}"
+  @movie = run_sql(sql_input).first
+  erb :movie
 end
