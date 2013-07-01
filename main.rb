@@ -16,8 +16,8 @@ get '/' do
 
 end
 
-get '/tasks' do
+get '/todos' do
 	sql = "SELECT * FROM tasks"
 	@tasks = run_sql(sql)
-	erb :todos
+	erb :tot=
 end
