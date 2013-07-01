@@ -36,3 +36,16 @@ get '/people' do
   @people = run_sql(sql_input)
   erb :people
 end
+
+# This should show details of a single person
+get '/people/:id' do
+  id = params[:id]
+  sql_input = "SELECT * FROM people WHERE id = #{id}"
+  @person = run_sql(sql_input).first
+  erb :person
+end
+
+
+
+
+
