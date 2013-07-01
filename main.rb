@@ -38,6 +38,14 @@ post '/todos' do
 	redirect to('/todos')
 end
 
+get '/todos/new' do
+	movies_sql = "SELECT * FROM movies" 
+	people_sql = "SELECT * FROM people"
+	@movies = run_sql(movies_sql)
+	@people = run_sql(people_sql)
+	erb :new_todo
+end
+
 # shows the details of a task
 get '/todos/:id' do
 	sql = "SELECT * FROM tasks WHERE id = #{params[:id]}"
@@ -60,14 +68,14 @@ post '/todos/:id' do
 	redirect to('/todos')
 end
 
-# 
-get '/todos/new' do 
-	erb :new_todo
-end
-
 get '/todos/:id/edit' do 
 	sql = "SELECT * FROM tasks WHERE id = #{params[:id]}"
 	@todo = run_sql(sql).first
 	erb :edit_todo
 end
 
+get '/todos/:id/delete' do
+	sql = "DELETE FROM tasks WHERE id = #{params[:id]}"
+	run_sql(sql)
+	redirect to('/todos')
+end
