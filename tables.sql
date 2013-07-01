@@ -1,6 +1,6 @@
--- DROP TABLE tasks;
--- DROP TABLE movies;
--- DROP TABLE people;
+DROP TABLE tasks;
+DROP TABLE movies;
+DROP TABLE people;
 
 
 CREATE TABLE people
@@ -30,3 +30,5 @@ CREATE TABLE tasks
 	movie_id INT REFERENCES movies(id)
 );
 
+INSERT INTO tasks (task, details, due, urgent) VALUES ('film forest scene', 'grab actors after lunch and go film the scene', 'yesterday', 'true');
+INSERT INTO tasks (task, details, due, urgent) VALUES ('settle budget conflict', 'meet with business manager', '07/22/2013', 'false');
