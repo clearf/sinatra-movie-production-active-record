@@ -23,6 +23,12 @@ get '/todos' do
 end
 
 post '/todos' do 
+	urgent = params[:urgent]
+	if urgent == "on"
+		urgent = true
+	else
+		urgent = false
+	end
 	sql = "INSERT INTO tasks (task, details, due, urgent) VALUES "\
 	"('#{params[:task]}', '#{params[:details]}', '#{params[:due]}', "\
 	" '#{params[:urgent]}')"
