@@ -1,15 +1,14 @@
 require 'sinatra'
 require 'sinatra/reloader' if development?
 require 'pg'
+require 'pry' if development?
+require 'sinatra/activerecord'
 
-helpers do
-  def run_sql(sql_input)
-    db = PG.connect(:dbname => 'movie_production', :host => 'localhost')
-    result = db.exec(sql_input)
-    db.close
-    result
-  end
-end
+set :database, {
+  adapter: 'postgresql',
+  database: 'movie_production',
+  host: 'localhost'
+}
 
 get '/' do
   erb :index
