@@ -10,6 +10,20 @@ set :database, {
   host: 'localhost'
 }
 
+class Person < ActiveRecord::Base
+  has_many :tasks
+end
+
+class Movie < ActiveRecord::Base
+  has_many :people
+  has_many :tasks
+end
+
+class Task < ActiveRecord::Base
+  belongs_to :people
+  belongs_to :movies
+end
+
 get '/' do
   erb :index
 end
