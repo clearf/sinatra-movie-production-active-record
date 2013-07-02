@@ -1,5 +1,5 @@
 <h1>Edit Task</h1>
-<form action="/tasks/<%= @task_id %>" method="post">
+<form action="/tasks/<%= @task_id %>/update" method="post">
   <input type="text" value="<%= @task_details['name'] %>"name="name">
   <input type="text" value="<%= @task_details['description'] %>" name="description">
     <select name="movie_id">

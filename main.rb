@@ -171,23 +171,17 @@ end
 #Edit Tasks
 get '/tasks/:id/edit' do
   @task_id = params[:id]
-  sql = "SELECT * FROM tasks WHERE id='#{@task_id}'"
-  @task_details = run_sql(sql).first
-  sql = "Select * FROM movies"
-  @movie_details = run_sql(sql)
-  sql = "SELECT * FROM people"
-  @people = run_sql(sql)
+  @task_details = Task.find(params[:id])
+  @movie_details = Movie.all
+  @people = Person.all
   erb :edit_task
 end
 
-post '/tasks/:id' do
-  task_id = params[:id]
-  name = params[:name]
-  description = params[:description]
-  movie_id = params[:movie_id]
-  person_id = params[:person_id]
-  sql = "UPDATE tasks SET (name, description, movie_id, person_id) = ('#{name}', '#{description}', #{movie_id}, #{person_id}) WHERE id =#{task_id}"
-  run_sql(sql)
+post '/tasks/:id/update' do
+  task = Task.find(params[:id])
+  task.name = params[:name]
+  task.description = params[:description]
+  task.save
   redirect to('/tasks')
 end
 
