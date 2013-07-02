@@ -1,3 +1,9 @@
-<%= @person['person_name'] %>
-<%= @person['director'] %>
-<%= @person['movie'] %>
+<h2><%= @person['person_name'] %></h2>
+<p>
+  <% if @person['director'] == 't' %>
+    Position: Director
+  <% else %>
+    Position: Crew
+  <% end %>
+</p>
+<p>Movie: <%= @movie['movie_name'] %></p>

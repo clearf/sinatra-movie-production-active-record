@@ -78,6 +78,8 @@ get '/people/:id' do
   id = params[:id]
   sql_input = "SELECT * FROM people WHERE id = #{id}"
   @person = run_sql(sql_input).first
+  second_sql_input = "SELECT * FROM movies WHERE id = #{@person['id']}"
+  @movie = run_sql(second_sql_input).first
   erb :person
 end
 
