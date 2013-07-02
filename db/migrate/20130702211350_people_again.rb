@@ -1,4 +1,4 @@
-class People < ActiveRecord::Migration
+class PeopleAgain < ActiveRecord::Migration
   def up
   	create_table :people do |t|
   		t.string :name
@@ -10,4 +10,4 @@ class People < ActiveRecord::Migration
   def down
   	drop_table :people
   end
-end 
+end

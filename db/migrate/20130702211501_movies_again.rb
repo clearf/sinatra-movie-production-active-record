@@ -1,4 +1,4 @@
-class Movies < ActiveRecord::Migration
+class MoviesAgain < ActiveRecord::Migration
   def up
   	create_table :movies do |t|
   		t.string :title
@@ -10,5 +10,5 @@ class Movies < ActiveRecord::Migration
 
   def down
   	drop_table :movies
-  end 
+  end
 end
