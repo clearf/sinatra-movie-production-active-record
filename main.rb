@@ -155,5 +155,31 @@ get '/movies/:id/delete' do
 	redirect to('/movies')
 end
 
+#################### End Movie Specific Routes ########################
+
+get '/people' do
+	sql = "SELECT * FROM people WHERE id != 1"
+	@people = run_sql(sql)
+	erb :people
+end
+
+post '/people' do
+	sql = "INSERT INTO people (name, email) VALUES ('#{params[:name]}', "\
+		" '#{params[:email]}') "
+	run_sql(sql)
+	redirect to('/people')
+end
+
+get '/people/:id' do 
+	sql = "SELECT * FROM people WHERE id = #{params[:id]}"
+	@person = run_sql(sql).first
+	erb :person
+end
+
+get '/people/:id/edit' do 
+	sql = "SELECT * FROM people WHERE id = #{params[:id]}"
+	@person = run_sql(sql).first
+	erb :edit_person
+end
 
 

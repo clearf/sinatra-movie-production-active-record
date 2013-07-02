@@ -1,0 +1,6 @@
+<ul>
+	<%@people.each do |person|%>
+		<a href ='/people/<%=person["id"]%>'><%=person["name"]%></a><br>
+	<%end%>
+</ul>
+<a href = 'people/new'>New Person</a><br>
