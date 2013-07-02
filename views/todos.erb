@@ -1,3 +1,5 @@
-<% @tasks.each do |task| %>
-  <%= task['task_name'] %>
-<% end %>
+<ul>
+  <% @tasks.each do |task| %>
+    <li><%= task['task_name'] %></li>
+  <% end %>
+</ul>
