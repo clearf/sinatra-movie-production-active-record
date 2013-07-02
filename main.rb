@@ -165,5 +165,15 @@ get '/tasks/:id' do
   erb :todo
 end
 
-
+# This should edit a task
+get '/tasks/:id/edit' do
+  id = params[:id]
+  sql_input = "SELECT * FROM tasks WHERE id = #{id}"
+  @task = run_sql(sql_input).first
+  second_sql_input = "SELECT id, person_name FROM people"
+  @people = run_sql(second_sql_input)
+  third_sql_input = "SELECT id, movie_name FROM movies"
+  @movies = run_sql(third_sql_input)
+  erb :edit_task
+end
 

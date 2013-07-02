@@ -1,0 +1,19 @@
+<form action="/tasks/:id/edit" method="post">
+  <input type="text" name="task_name" value="<%= @task['task_name'] %>" autofocus="true"><br/>
+  <input type="text" name="description" value="<%= @task['description'] %>"><br/>
+  <select name="person_id">
+    <% @people.each do |person| %>
+      <option value="<%= person['id'] %>">
+        <%= person['person_name'] %>
+      </option>
+    <% end %>
+  </select><br/>
+  <select name="movie_id">
+    <% @movies.each do |movie| %>
+      <option value="<%= movie['id'] %>">
+        <%= movie['movie_name'] %>
+      </option>
+    <% end %>
+  </select><br/>
+  <button>Submit</button>
+</form>
