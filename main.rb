@@ -51,11 +51,10 @@ erb :movie
 end
 
 post '/movies/new' do
-id = params[:id]
-  description = params[:description]
-  contact = params[:contact]
-  movie = params[:movie]
-  sql = "INSERT INTO todo (name, description, contact, movie) VALUES ('#{name}','#{description}','#{contact}','#{movie}')"
+  release_date = params[:release_date]
+  title = params[:title]
+  director = params[:director]
+  sql = "INSERT INTO movies (release_date,title, director) VALUES ('#{release_date}','#{title}','#{director}')"
   run_sql(sql)
 redirect to '/movies'
 end
