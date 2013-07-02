@@ -110,6 +110,22 @@ get '/people/:id/edit' do
   erb :edit_person
 end
 
+# This should send a post request to the url
+post '/people/:id/edit' do
+  id = params[:id]
+  person_name = params[:person_name]
+  director = params[:director]
+  if director == "yes"
+    director = true
+  else
+    director = false
+  end
+  movie_id = params[:movie_id]
+  sql_input = "UPDATE people SET (person_name, director, movie_id) = ('#{person_name}', #{director}, #{movie_id}) WHERE id = #{id}"
+  run_sql(sql_input)
+  redirect to('/people')
+end
+
 # This should list tasks
 get '/tasks' do
   sql_input = "SELECT * FROM tasks"
