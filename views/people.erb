@@ -1,3 +1,5 @@
-<% @people.each do |person| %>
-  <%= person['person_name'] %>
-<% end %>
+<ul>
+  <% @people.each do |person| %>
+    <li><%= person['person_name'] %></li>
+  <% end %>
+</ul>
