@@ -1,6 +1,8 @@
 require 'sinatra'
 require 'sinatra/reloader' if development?
 require 'pg'
+require 'pry' if development?
+require 'sinatra/activerecord'
 
 helpers do
   def run_sql(sql)
