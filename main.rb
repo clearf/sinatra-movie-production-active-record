@@ -5,12 +5,24 @@ require 'sinatra/reloader' if development?
 require 'rake'
 require 'sinatra/activerecord'
 
-# helper function that runs an input sql string
-def run_sql(sql)
-	db = PG.connect(dbname: 'production', host: 'localhost')
-	result = db.exec(sql)
-	db.close
-	result
+set :database, {
+	adapter: 'postgresql',
+	database: 'production',
+	host: 'localhost'
+}
+
+class Person < ActiveRecord::Base
+	has_many :tasks
+	has_many :movies
+end
+
+class Movie < ActiveRecord::Base
+	belongs_to :person
+end
+
+class Task < ActiveRecord::Base
+	belongs_to :person
+	belongs_to :movie
 end
 
 get '/' do

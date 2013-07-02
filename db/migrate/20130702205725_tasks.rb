@@ -1,6 +1,6 @@
 class Tasks < ActiveRecord::Migration
   def up
-  	create_table :todos do |t|
+  	create_table :tasks do |t|
   		t.string :task
   		t.string :details
   		t.string :due
