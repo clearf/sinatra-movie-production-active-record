@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20130702233325) do
     t.date     "release_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "task_id"
+    t.integer  "todo_id"
     t.integer  "person_id"
   end
 
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20130702233325) do
     t.boolean  "director",   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "task_id"
+    t.integer  "todo_id"
     t.integer  "movie_id"
   end
 
