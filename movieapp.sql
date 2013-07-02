@@ -22,6 +22,7 @@ CREATE TABLE people
 
 CREATE TABLE movies
 (
+  id SERIAL PRIMARY KEY,
   release_date VARCHAR(255),
   title VARCHAR(255),
   director VARCHAR(255)

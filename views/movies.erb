@@ -1,7 +1,10 @@
 <h1>These are your movies!</h1>
-
+<button><a href="/movies/new">Make a new movie here<a/></button>
+<div>
+<br>
 <% @movies.each do |movie| %>
 <%= movie['title'] %>
 <%= movie['release_date'] %>
 <%= movie['director'] %>
+</div>
 <% end %>

@@ -1,0 +1,23 @@
+<form action="/todos/new" method="POST">
+  Name:<input type="text" name="name">
+  Description:<input type="text" name="description">
+  Contact:
+    <select name="id">
+    <% @contact.each do |contact| %>
+    <option value ="<%= contact['id'] %>">
+    <%= contact['name'] %>
+    </option>
+    <% end %>
+    </select>
+  Movie:
+    <select name="id">
+    <% @movies.each do |movie| %>
+    <option value ="<%= movie['id'] %>">
+    <%= movie['title'] %>
+    </option>
+      <% end %>
+    </select>
+<br>
+      <button>Add this to do ! </button>
+</form>
+

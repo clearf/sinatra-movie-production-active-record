@@ -1,10 +1,12 @@
 <h1>This is your to do list!</h1>
-
+<button><a href="/todos/new">Make a new to do here<a/></button>
+<div>
+<br>
 <% @todo.each do |todo| %>
 Name:<%= todo['name'] %><br>
 Description: <%= todo['description'] %><br>
 Contact: <%= todo['contact'] %><br>
 Movie <%= todo['movie'] %><br>
-
-
+</div>
+<br>
 <% end %>
