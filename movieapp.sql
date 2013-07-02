@@ -23,6 +23,12 @@ CREATE TABLE people
 CREATE TABLE movies
 (
   release_date VARCHAR(255),
+  title VARCHAR(255),
   director VARCHAR(255)
 );
 
+INSERT INTO todo (contact) VALUES ('Terrance A. Master');
+
+INSERT INTO people (name) VALUES ('Wynona Leader');
+
+INSERT INTO movies (director) VALUES ('John Woo')

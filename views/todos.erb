@@ -1,0 +1,10 @@
+<h1>This is your to do list!</h1>
+
+<% @todo.each do |todo| %>
+Name:<%= todo['name'] %><br>
+Description: <%= todo['description'] %><br>
+Contact: <%= todo['contact'] %><br>
+Movie <%= todo['movie'] %><br>
+
+
+<% end %>
