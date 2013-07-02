@@ -140,12 +140,12 @@ post '/people/:id/edit' do
 end
 
 # This should delete a person
-### test this out
 post '/people/:id/delete' do
   id = params[:id]
-  sql_input = "UPDATE tasks SET (person_id) = (null) WHERE id = #{id}"
+  sql_input = "UPDATE tasks SET (person_id) = (null) WHERE person_id = #{id}"
   run_sql(sql_input)
   second_sql_input = "DELETE FROM people WHERE id = #{id}"
+  run_sql(second_sql_input)
   redirect to('/people')
 end
 
