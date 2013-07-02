@@ -163,15 +163,12 @@ end
 #################### End Movie Specific Routes ########################
 
 get '/people' do
-	sql = "SELECT * FROM people WHERE id != 1"
-	@people = run_sql(sql)
+	@people = Person.all
 	erb :people
 end
 
 post '/people' do
-	sql = "INSERT INTO people (name, email) VALUES ('#{params[:name]}', "\
-		" '#{params[:email]}') "
-	run_sql(sql)
+	Person.create(params)
 	redirect to('/people')
 end
 
@@ -180,21 +177,20 @@ get '/people/new' do
 end
 
 get '/people/:id' do 
-	sql = "SELECT * FROM people WHERE id = #{params[:id]}"
-	@person = run_sql(sql).first
+	@person = Person.find(params[:id])
 	erb :person
 end
 
 get '/people/:id/edit' do 
-	sql = "SELECT * FROM people WHERE id = #{params[:id]}"
-	@person = run_sql(sql).first
+	@person = Person.find(params[:id])
 	erb :edit_person
 end
 
 post '/people/:id/edit' do
-	sql = "UPDATE people SET (name, email) = ('#{params[:name]}', '#{params[:email]}')"\
-	"WHERE id = #{params[:id]}"
-	run_sql(sql)
+	@person = Person.find(params[:id])
+	@person.name = params[:name]
+	@person.email = params[:email]
+	@person.save
 	redirect to('/people')
 end
 
