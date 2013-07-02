@@ -4,6 +4,9 @@
   <%= @movie_details.person_id  %>
 </h1>
 <h2>Tasks:</h2>
+<% @movie_details.tasks.each do |task| %>
+<p><%= task.name %></p>
+<% end %>
 <form action="/movies/<%= @movie_details.id %>/delete" method="post">
 <button>DELETE MOVIE</button>
 </form>

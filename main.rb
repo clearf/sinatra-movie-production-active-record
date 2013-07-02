@@ -11,20 +11,35 @@ set :database, {
   host: 'localhost'
 }
 
+    # t.string   "name"
+    # t.datetime "created_at"
+    # t.datetime "updated_at"
 class Person < ActiveRecord::Base
   has_many :movies
   has_many :tasks
 end
 
+   # t.string   "name"
+   #  t.integer  "person_id"
+   #  t.datetime "created_at"
+   #  t.datetime "updated_at"
 class Movie < ActiveRecord::Base
   belongs_to :person
   has_many :tasks
 end
 
+    # t.string   "name"
+    # t.string   "description"
+    # t.integer  "movie_id"
+    # t.integer  "person_id"
+    # t.datetime "created_at"
+    # t.datetime "updated_at"
 class Task < ActiveRecord::Base
   belongs_to :person
   belongs_to :movie
 end
+
+binding.pry
 
 get '/' do
   erb :home
@@ -52,8 +67,6 @@ end
 get '/people/:id' do
 @person = Person.find(params[:id])
 @person_details = Person.find(params[:id])
-@tasks = Task.find_by_person_id(params[:id])
-@movies = Movie.find_by_person_id(params[:id])
 erb :person
 end
 
@@ -95,9 +108,6 @@ end
 #Individual Movie Page
 get '/movies/:id' do
   @movie_details = Movie.find(params[:id])
-  @people = Person.all
-  @tasks = Task.find_by_movie_id(params[:id])
-  binding.pry
   erb :movie
 end
 
