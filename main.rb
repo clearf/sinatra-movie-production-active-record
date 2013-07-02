@@ -92,6 +92,8 @@ end
 get '/tasks/new' do
   sql_input = "SELECT id, person_name FROM people"
   @people = run_sql(sql_input)
+  # second_sql_input = "SELECT id, movie_name FROM movies WHERE id = "
+  # @movies = run_sql(second_sql_input)
   erb :new_todo
 end
 
