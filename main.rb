@@ -99,6 +99,17 @@ get '/tasks/new' do
   erb :new_todo
 end
 
+# This should send a post request to the url
+post '/tasks/new' do
+  task_name = params[:task_name]
+  description = params[:description]
+  person_id = params[:person_id]
+  movie_id = params[:movie_id]
+  sql_input = "INSERT INTO tasks (task_name, description, person_id, movie_id) VALUES ('#{task_name}', '#{description}', #{person_id}, #{movie_id})"
+  run_sql(sql_input)
+  redirect to('/tasks')
+end
+
 # This should list a single task
 get '/tasks/:id' do
   id = params[:id]
@@ -110,4 +121,6 @@ get '/tasks/:id' do
   @person = run_sql(third_sql_input).first
   erb :todo
 end
+
+
 
