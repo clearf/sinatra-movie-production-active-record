@@ -16,11 +16,11 @@ class Person < ActiveRecord::Base
   has_many :tasks
 end
 
-class Movies < ActiveRecord::Base
+class Movie < ActiveRecord::Base
   belongs_to :person
 end
 
-class Tasks < ActiveRecord::Base
+class Task < ActiveRecord::Base
   belongs_to :person
   belongs_to :movie
 end
@@ -46,64 +46,53 @@ post '/people/new' do
   redirect to('/people')
 end
 
-#Individual People Page
-get '/people/:id' do
-@person = Person.find(params[:id])
+
+# #Individual People Page
+# get '/people/:id' do
+# @person = Person.find(params[:id])
 # sql = "SELECT * FROM people WHERE id ='#{@person}'"
 # @person_details = run_sql(sql).first
 # sql = "SELECT * FROM tasks where person_id ='#{@person}'"
 # @tasks = run_sql(sql)
 # sql = "SELECT * FROM movies where person_id ='#{@person}'"
 # @movies = run_sql(sql)
-erb :person
-end
+# erb :person
+# end
 
 post '/people/:id/delete' do
-  @person_id = params[:id]
-  sql = "DELETE FROM people where id = '#{@person_id}'"
-  run_sql(sql)
-  sql = "DELETE FROM movies where person_id = '#{@person_id}'"
-  run_sql(sql)
-  sql = "DELETE FROM tasks where person_id = '#{@person_id}'"
-  run_sql(sql)
-
+  Person.find(params[:id]).destroy
   redirect to ('/people')
 end
 
-#Edit People
-get '/people/:id/edit' do
-  @person_id = params[:id]
-  sql = "SELECT * FROM people WHERE id='#{@person_id}'"
-  @person_details = run_sql(sql).first
-  erb :edit_person
-end
+# #Edit People
+# get '/people/:id/edit' do
+#   @person_id = params[:id]
+#   sql = "SELECT * FROM people WHERE id='#{@person_id}'"
+#   @person_details = run_sql(sql).first
+#   erb :edit_person
+# end
 
-post '/people/:id' do
-  person_id = params[:id]
-  name = params[:name]
-  sql = "UPDATE people SET (name) = ('#{name}') WHERE id =#{person_id}"
-  run_sql(sql)
-  redirect to('/people')
-end
+# post '/people/:id' do
+#   person_id = params[:id]
+#   name = params[:name]
+#   sql = "UPDATE people SET (name) = ('#{name}') WHERE id =#{person_id}"
+#   run_sql(sql)
+#   redirect to('/people')
+# end
 
 #list movies
 get '/movies' do
-  sql = "SELECT * FROM movies"
-  @movies = run_sql(sql)
+  @movies = Movie.all
   erb :movies
 end
 
 get '/movies/new' do
-  sql = "SELECT * FROM people"
-  @people = run_sql(sql)
+  @people = Person.all
   erb :new_movie
 end
 
 post '/movies/new' do
-  name = params[:name]
-  person_id = params[:person_id]
-  sql = "INSERT INTO movies (name, person_id) VALUES ('#{name}', '#{person_id}')"
-  run_sql(sql)
+  movie = Movie.create(params)
   redirect to('/movies')
 end
 
