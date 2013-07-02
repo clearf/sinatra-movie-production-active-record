@@ -155,20 +155,16 @@ end
 
 #Individual Task Page
 get '/tasks/:id' do
-  @task_id = params[:id]
-  sql = "SELECT * FROM tasks where id='#{@task_id}'"
-  @task_details = run_sql(sql).first
-  sql = "Select * FROM movies"
-  @movie_details = run_sql(sql)
-    sql = "Select * FROM people"
-  @people_details = run_sql(sql)
+  @task = Task.find(params[:id])
+  @task_details = Task.find(params[:id])
+  @movie_details = Movie.all
+  @people_details = Person.all
   erb :todo
 end
 
 post '/tasks/:id/delete' do
   @task_id = params[:id]
-  sql = "DELETE FROM tasks where id = '#{@task_id}'"
-  run_sql(sql)
+  Task.find(params[:id]).destroy
 redirect to ('/tasks')
 end
 
