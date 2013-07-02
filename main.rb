@@ -44,6 +44,23 @@ get '/movies/:id' do
   erb :movie
 end
 
+# This should edit a movie
+get '/movies/:id/edit' do
+  id = params[:id]
+  sql_input = "SELECT * FROM movies WHERE id = #{id}"
+  @movie = run_sql(sql_input).first
+  erb :edit_movie
+end
+
+post '/movies/:id/edit' do
+  id = params[:id]
+  movie_name = params[:movie_name]
+  release_date = params[:release_date]
+  sql_input = "UPDATE movies SET (movie_name, release_date) = ('#{movie_name}', '#{release_date}') WHERE id = #{id}"
+  run_sql(sql_input)
+  redirect to('/movies')
+end
+
 # This should list people
 get '/people' do
   sql_input = "SELECT * FROM people"

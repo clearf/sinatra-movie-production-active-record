@@ -1,0 +1,5 @@
+<form action="/movies/<%= @movie['id'] %>/edit" method="post">
+  <input type="text" name="movie_name" value="<%= @movie['movie_name'] %>" autofocus="true"><br/>
+  <input type="text" name="release_date" value="<%= @movie['release_date'] %>"><br/>
+  <button>Submit</button>
+</form>
