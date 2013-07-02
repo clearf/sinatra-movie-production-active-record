@@ -139,6 +139,16 @@ post '/people/:id/edit' do
   redirect to('/people')
 end
 
+# This should delete a person
+### test this out
+post '/people/:id/delete' do
+  id = params[:id]
+  sql_input = "UPDATE tasks SET (person_id) = (null) WHERE id = #{id}"
+  run_sql(sql_input)
+  second_sql_input = "DELETE FROM people WHERE id = #{id}"
+  redirect to('/people')
+end
+
 # This should list tasks
 get '/tasks' do
   sql_input = "SELECT * FROM tasks"

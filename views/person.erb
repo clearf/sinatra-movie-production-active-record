@@ -7,3 +7,7 @@
   <% end %>
 </p>
 <p>Movie: <%= @movie['movie_name'] %></p>
+
+<form action="/people/<%= @person['id'] %>/delete" method="post">
+  <button>Delete</button>
+</form
