@@ -4,6 +4,12 @@ require 'pg'
 require 'pry' if development?
 require 'sinatra/activerecord'
 
+set :database, {
+  adapter: 'postgresql',
+  database: 'movies',
+  host: 'localhost'
+}
+
 get '/' do
   erb :index
 end

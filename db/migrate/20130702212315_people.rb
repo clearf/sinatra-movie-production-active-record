@@ -4,6 +4,7 @@ class People < ActiveRecord::Migration
       t.string :name
       t.references :movie
       t.references :task
+    end
   end
 
   def down

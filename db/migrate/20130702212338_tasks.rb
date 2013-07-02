@@ -5,6 +5,7 @@ class Tasks < ActiveRecord::Migration
       t.string :description
       t.references :person
       t.references :movie
+    end
   end
 
   def down
