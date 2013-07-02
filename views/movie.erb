@@ -1,0 +1,10 @@
+<h2> <%=@movie["title"]%></h2>
+<h2> <%=@director["name"]%></h2>
+<p> <%=@movie["description"]%></p>
+<ul>
+	<%@todos.each do |todo|%>
+		<%=todo["task"]%>
+	<%end%>
+</ul>
+<a href="movies/:id/edit">Edit Movie</a>
+<a href="movies/:id/delete"> Delete Movie</a>

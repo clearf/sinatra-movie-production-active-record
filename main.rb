@@ -122,14 +122,22 @@ end
 get '/movies/:id' do 
 	sql = "SELECT * FROM movies WHERE id = #{params[:id]}"
 	@movie = run_sql(sql).first
-	director_sql = "SELECT * FROM movies WHERE id = #{@movie["director_id"]}"
+	director_sql = "SELECT * FROM people WHERE id = #{@movie["director_id"]}"
 	@director = run_sql(director_sql).first
-	tasks_sql = "SELECT * FROM tasks WHERE movie_id = #{@moive["id"]}"
+	tasks_sql = "SELECT * FROM tasks WHERE movie_id = #{params[:id]}"
 	@todos = run_sql(tasks_sql)
 	erb :movie
 end
 
 
+get '/movies/:id/edit' do
+	sql = "SELECT * FROM movies WHERE id = #{params[:id]}"
+	@movie = run_sql(sql).first
+	director_sql = "SELECT * FROM people WHERE id = #{@movie["director_id"]}"
+	@director = run_sql(director_sql).first
+	people_sql = "SELECT * FROM people"
+	@people = run_sql(people_sql)
+end
 
 
 
