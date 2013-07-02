@@ -18,6 +18,7 @@ end
 
 class Movie < ActiveRecord::Base
   belongs_to :person
+  has_many :tasks
 end
 
 class Task < ActiveRecord::Base
@@ -97,23 +98,20 @@ post '/movies/new' do
 end
 
 #Individual Movie Page
-# get '/movies/:id' do
-#   @movie_id = params[:id]
-#   sql = "SELECT * FROM movies WHERE id= '#{@movie_id}'"
-#   @movie_details = run_sql(sql).first
-#   sql = "SELECT * FROM tasks where movie_id ='#{@movie_id}'"
-#   @tasks = run_sql(sql).first
-#   erb :movie
-# end
+get '/movies/:id' do
+  @movie_details = Movie.find(params[:id])
+  @people = Person.all
+  @tasks = Task.find_by_movie_id(params[:id])
+  binding.pry
+  erb :movie
+end
 
 
-#Delete Movie Page
-# post '/movies/:id/delete' do
-#   @movie_id = params[:id]
-#   sql = "DELETE FROM movies where id = '#{@movie_id}'"
-#   run_sql(sql)
-#   redirect to ('/movies')
-# end
+# Delete Movie Page
+post '/movies/:id/delete' do
+  Movie.find(params[:id]).destroy
+  redirect to ('/movies')
+end
 
 #Edit Movies
 # get '/movies/:id/edit' do

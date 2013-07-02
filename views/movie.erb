@@ -1,18 +1,10 @@
-<h1>Name: <%= @movie_details['name'].capitalize %></h1>
-<h1>Director: <%= @movie_details['person_id'].capitalize %></h1>
+<h1>Name: <%= @movie_details.name.capitalize %></h1>
+<h1>
+  Director:
+  <%= @movie_details.person_id  %>
+</h1>
 <h2>Tasks:</h2>
-<ul>
-    <% if @tasks %>
-  <li><a href="/tasks/<%= @tasks['id'] %>"><%= @tasks['name'].capitalize %></a></li>
-    <ul>
-      <li><%= @tasks['description'] %></li>
-    </ul>
-    <% else %>
-    <p>No Tasks</p>
-    <% end %>
-</ul>
-
-<form action="/movies/<%= @movie_details['id'] %>/delete" method="post">
+<form action="/movies/<%= @movie_details.id %>/delete" method="post">
 <button>DELETE MOVIE</button>
 </form>
 
