@@ -12,7 +12,7 @@ def run_sql(sql)
 end
 
 get '/' do
-
+	erb :index
 end
 
 # lists all of the tasks that require completion

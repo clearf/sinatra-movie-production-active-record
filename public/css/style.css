@@ -1,3 +1,40 @@
 body {
-	background: url('../binding_dark.png');
+	background: url('/binding_dark.png');
+	color: white;
+}
+
+.menuBar {
+	height: 60px;
+	background: rgba(58, 58, 58, 0.7);
+	margin: -20px -10px 10px -10px;
+
+}
+
+div {
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+.menuBar div {
+	display: inline-block;
+	margin: -10px 20px 0 0;
+}
+
+.menuBar li {
+	display: inline-block;
+}
+
+a {text-decoration: none;}
+a:visited {color: #ccfbff;}
+a:hover {color: #ccfbff;}
+a:active {color:#ccfbff;}
+
+p, h1, h2, h3, h4, h5, h6 {
+	color: #ccfbff;
+}
+
+.container {
+	background: rgba(58, 58, 58, 0.7);
+	padding: 40px;
+	margin: 10px 0 10px 50px;
 }
