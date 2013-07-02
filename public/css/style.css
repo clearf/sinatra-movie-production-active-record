@@ -1,13 +1,6 @@
 body {
-	background: url('/binding_dark.png');
+	background: url('/grey.png');
 	color: white;
-}
-
-.menuBar {
-	height: 60px;
-	background: rgba(58, 58, 58, 0.7);
-	margin: -20px -10px 10px -10px;
-
 }
 
 div {
@@ -15,26 +8,96 @@ div {
 	border-bottom-left-radius: 5px;
 }
 
+a {
+	text-decoration: none;
+	color: black;
+	transition: color .5s linear;
+}
+a:hover {color: #ff5900;}
+a:visited {color: black;}
+a:active {color:black;}
+
+p, h1, h2, h3, h4, h5, h6 {
+	color: black;
+	transition: color .5s linear;
+}
+
+p:hover, a:hover, h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
+	color: #ff5900;
+}
+
+
+label {
+	color:black;
+}
+
+#logo {
+	margin: 12px 10px 0 -20px;
+	height: 50px;
+	width: 50px;
+	float: left;
+}
+
+.menuBar {
+	height: 60px;
+	background: rgba(216, 216, 216, .3);
+	margin: -30px -10px 30px -10px;
+	vertical-align: text-bottom;
+
+}
+
+.menuBar h1 {
+	margin-right: 20px;
+	float: left;
+}
+
 .menuBar div {
-	display: inline-block;
-	margin: -10px 20px 0 0;
+	margin: 33px 10px 0 10px;
+	transition: text-shadow .5s linear;
+}
+
+.menuBar div:hover {
+	text-shadow: 1px 1px rgba(216, 216, 216, .3);
 }
 
 .menuBar li {
 	display: inline-block;
-}
 
-a {text-decoration: none;}
-a:visited {color: #ccfbff;}
-a:hover {color: #ccfbff;}
-a:active {color:#ccfbff;}
-
-p, h1, h2, h3, h4, h5, h6 {
-	color: #ccfbff;
 }
 
 .container {
-	background: rgba(58, 58, 58, 0.7);
+	background: rgba(216, 216, 216, .3);
+	border: 1px solid rgba(0,0,0, .2);
 	padding: 40px;
-	margin: 10px 0 10px 50px;
+	margin: 10px 0 10px 0;
+	margin: auto;
+	text-align: center;
+}
+
+.addItem {
+	background: rgba(216, 216, 216, .3);
+	margin: 10px 0 10px 0;
+	margin: auto;
+	padding: 10px;
+	text-align: center;
+	border: 1px solid rgba(0,0,0, .2);
+	transition: all .5s ease-in-out;
+}
+
+.addItem:hover, .listbutton:hover{
+	background: rgba(216,216,216, 0.5);
+	border:1px solid rgba(0,0,0, .3);
+}
+
+.listButton {
+	background: rgba(216, 216, 216, .3);
+	margin: 0 10px 20px 10px;
+	margin: auto;
+	width: 150px;
+	padding: 2px;
+	text-align: center;
+	overflow: hidden;
+	border: 1px solid rgba(0,0,0, .2);
+	transition: all .5s ease-in-out;
+	position: relative;
 }

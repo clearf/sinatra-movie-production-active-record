@@ -1,18 +1,25 @@
-<%=@todo["task"]%><br>
-<%=@todo["details"]%> <br>
-<%=@todo["due"]%> <br>
-<p>Urgent: 
-	<% if @todo["urgent"] == 't' %>
-		Yes
-	<%else%>
-		No
-	<%end%> 
-</p>
-<p> Responsible Person: 
-	<%=@person["name"] %>
-</p>
-<p> For Production On: 
-	<%=@movie["title"] %>
-</p>
-<a href = "/todos/<%=@todo["id"]%>/edit"> Edit Task</a>
-<a href = "/todos/<%=@todo["id"]%>/delete"> Delete Task </a>
+<div style = "text-align: left">
+	<h2>Task: </h2> <p><%=@todo["task"]%></p>
+	<h2>Details: </h2> <p><%=@todo["details"]%></p>
+	<h2>Responsible Person: </h2>
+	<p><%=@person["name"] %></p>
+	<h2>For Production On: </h2>
+	<p><%=@movie["title"] %></p>
+	<h2 style = "display: inline-block">Due: </h2> 
+	<p style = "display: inline-block"> <%=@todo["due"]%></p> 
+	<div><h2 style= "display:inline-block">Urgent:</h2>
+		<p style= "display:inline-block"> 
+			<% if @todo["urgent"] == 't' %>
+				Yes
+			<%else%>
+				No
+			<%end%> 
+		</p>
+	</div><br>
+	<div class = "listButton" style = "float: left">
+		<a href = "/todos/<%=@todo["id"]%>/edit"> Edit Task</a>
+	</div>
+	<div class = "listButton" style = "float: right">
+		<a href = "/todos/<%=@todo["id"]%>/delete"> Delete Task </a>
+	</div>
+</div>

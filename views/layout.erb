@@ -6,16 +6,18 @@
 </head>
 <body>
 	<div class="menuBar" >
-		
 		<ul>
-			<div><h1><a href = "/" >ProduceIt </a></h1></div>
-			<li><div class = 'menuButton'><a href = '/todos'>Todos </a></div></li>
-			<li><div class = 'menuButton'><a href = '/people'> People </a></div> </li>
-			<li><div class = 'menuButton'><a href = '/movies'> Movies </a></div> </li>
+			<img src = "/logo.png" id = 'logo'/>
+			<h1 style = "display: inline-block"><a href = "/" >ProduceIt </a></h1>
+			<li><div class = 'menuButton'><h3><a href = '/todos'>Todos </a></h3></div></li>
+			<li><div class = 'menuButton'><h3><a href = '/people'> People </a></h3></div> </li>
+			<li><div class = 'menuButton'><h3><a href = '/movies'> Movies </a></h3></div> </li>
 		</ul>
-		<div class = "container">
-			<%=yield%>
-		</div>
+	</div>
+
+	<div class = "container" style = "width: 400px">
+		<%=yield%>
+
 	</div>
 </body>
 </html>
