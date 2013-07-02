@@ -100,6 +100,16 @@ get '/people/:id' do
   erb :person
 end
 
+# This should edit a person
+get '/people/:id/edit' do
+  id = params[:id]
+  sql_input = "SELECT * FROM people WHERE id = #{id}"
+  @person = run_sql(sql_input).first
+  second_sql_input = "SELECT id, movie_name FROM movies"
+  @movies = run_sql(second_sql_input)
+  erb :edit_person
+end
+
 # This should list tasks
 get '/tasks' do
   sql_input = "SELECT * FROM tasks"
