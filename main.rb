@@ -114,23 +114,20 @@ post '/movies/:id/delete' do
 end
 
 #Edit Movies
-# get '/movies/:id/edit' do
-#   @movie_id = params[:id]
-#   sql = "SELECT * FROM movies WHERE id='#{@movie_id}'"
-#   @movie_details = run_sql(sql).first
-#   sql = "SELECT * FROM people"
-#   @people = run_sql(sql)
-#   erb :edit_movie
-# end
+get '/movies/:id/edit' do
+  @movie_id = params[:id]
+  @movie_details = Movie.find(params[:id])
+  @people = Person.all
+  erb :edit_movie
+end
 
-# post '/movies/:id' do
-#   movie_id = params[:id]
-#   name = params[:name]
-#   person_id = params[:person_id]
-#   sql = "UPDATE movies SET (name, person_id) = ('#{name}', #{person_id}) WHERE id =#{movie_id}"
-#   run_sql(sql)
-#   redirect to('/movies')
-# end
+post '/movies/:id' do
+  movie = Movie.find(params[:id])
+  movie.name = params[:name]
+  movie.person_id = params[:person_id]
+  movie.save
+  redirect to('/movies')
+end
 
 #list tasks
 get '/tasks' do
@@ -179,6 +176,8 @@ post '/tasks/:id/update' do
   task = Task.find(params[:id])
   task.name = params[:name]
   task.description = params[:description]
+  task.person_id = params[:person_id]
+  task.movie_id = params[:movie_id]
   task.save
   redirect to('/tasks')
 end
