@@ -129,6 +129,13 @@ get '/movies/:id' do
 	erb :movie
 end
 
+post '/movies/:id' do
+	sql = "UPDATE movies  SET (title, description, director_id) ="\
+	"('#{params[:title]}', '#{params[:description]}', #{params[:director_id]})"\
+	"WHERE id = #{params[:id]}"
+	run_sql(sql)
+	redirect to('/movies')
+end
 
 get '/movies/:id/edit' do
 	sql = "SELECT * FROM movies WHERE id = #{params[:id]}"
@@ -137,6 +144,18 @@ get '/movies/:id/edit' do
 	@director = run_sql(director_sql).first
 	people_sql = "SELECT * FROM people"
 	@people = run_sql(people_sql)
+	erb :edit_movie
+end
+
+get '/movies/:id/delete' do
+	tasks_sql = "SELECT * FROM tasks WHERE movie_id = #{params[:id]}"
+	run_sql(tasks_sql).each do |task|
+		task["movie_id"] = 1
+	end
+	
+	sql = "DELETE FROM movies WHERE id = #{params[:id]}"
+	run_sql(sql)
+	redirect to('/movies')
 end
 
 
