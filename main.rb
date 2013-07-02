@@ -12,8 +12,6 @@ set :database, {
 }
 
 class Person < ActiveRecord::Base
-	has_many :tasks
-	has_many :movies
 end
 
 class Movie < ActiveRecord::Base
@@ -104,51 +102,41 @@ end
 
 # lists all of the movies currently listed as in production
 get '/movies' do 
-	sql = "SELECT * FROM movies WHERE id != 1"
-	@movies = run_sql(sql)
+	
+	@movies = Movie.all
 	erb :movies
 end
 
 post '/movies' do
-	sql = "INSERT INTO movies (title, description, director_id) VALUES "\
-	"('#{params[:title]}', '#{params[:description]}', #{params[:director_id]})"
-	run_sql(sql)
+	Movie.create(params)
 	redirect to('/movies')
 end
 
 # adds a new movie to the movies in production
 get '/movies/new' do
-	people_sql = "SELECT * FROM people"
-	@people = run_sql(people_sql)
+	@people = Person.all
 	erb :new_movie
 end
 
 
 get '/movies/:id' do 
-	sql = "SELECT * FROM movies WHERE id = #{params[:id]}"
-	@movie = run_sql(sql).first
-	director_sql = "SELECT * FROM people WHERE id = #{@movie["director_id"]}"
-	@director = run_sql(director_sql).first
-	tasks_sql = "SELECT * FROM tasks WHERE movie_id = #{params[:id]}"
-	@todos = run_sql(tasks_sql)
+	@movie = Movie.find(params[:id])
+	@director = Person.find(@movie.director_id)
 	erb :movie
 end
 
 post '/movies/:id' do
-	sql = "UPDATE movies  SET (title, description, director_id) ="\
-	"('#{params[:title]}', '#{params[:description]}', #{params[:director_id]})"\
-	"WHERE id = #{params[:id]}"
-	run_sql(sql)
+	movie = Movie.find(params[:id])
+	movie.title = params[:title]
+	movie.description = params[:description]
+	movie.director_id = params[:director_id]
 	redirect to('/movies')
 end
 
 get '/movies/:id/edit' do
-	sql = "SELECT * FROM movies WHERE id = #{params[:id]}"
-	@movie = run_sql(sql).first
-	director_sql = "SELECT * FROM people WHERE id = #{@movie["director_id"]}"
-	@director = run_sql(director_sql).first
-	people_sql = "SELECT * FROM people"
-	@people = run_sql(people_sql)
+	@movie = Movie.find(params[:id])
+	@director = Person.find(@movie.director_id)
+	@people = People.all
 	erb :edit_movie
 end
 
@@ -195,12 +183,10 @@ post '/people/:id/edit' do
 end
 
 get '/people/:id/delete' do
-	tasks_sql = "UPDATE tasks SET person_id = 1 WHERE person_id = #{params[:id]}"
-	run_sql(tasks_sql)
-	movies_sql = "UPDATE movies SET director_id = 1 WHERE director_id = #{params[:id]}"
-	run_sql(movies_sql)
-	sql = "DELETE FROM people WHERE id = #{params[:id]}"
-	run_sql(sql)
+	binding.pry
+	@person = Person.find(params[:id])
+	@movies = Movie.find_by_director(params[:id])
+	@tasks = Task.find_by_person(params[:id])
 	redirect to('/people')
 end
 
