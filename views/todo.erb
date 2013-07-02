@@ -2,3 +2,7 @@
 <p>Description: <%= @task['description'] %></p>
 <p>Movie: <%= @movie['movie_name'] %></p>
 <p>Contact: <%= @person['person_name'] %></p>
+
+<form action="/tasks/<%= @task['id'] %>/delete" method="post">
+  <button>Delete</button>
+</form>

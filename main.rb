@@ -212,10 +212,13 @@ post '/tasks/:id/edit' do
   redirect to('/tasks')
 end
 
-
-
-
-
+# This should delete a task
+post '/tasks/:id/delete' do
+  id = params[:id]
+  sql_input = "DELETE FROM tasks WHERE id = #{id}"
+  run_sql(sql_input)
+  redirect to('/tasks')
+end
 
 
 
