@@ -15,6 +15,7 @@ h1{
 .home_buttons {
   text-align: center;
   padding: 20px;
+  margin: auto;
 }
 
 .buttons {
@@ -50,7 +51,7 @@ color: #E74C3C;
 padding: 5px;
 width: 70px;
 margin-top: 05px;
-margin-left: -10px;
+margin-left: 10px;
 text-align: center;
 
 }
