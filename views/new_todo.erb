@@ -8,4 +8,11 @@
       </option>
     <% end %>
   </select>
+  <select name="movie_id">
+    <% @movies.each do |movie| %>
+      <option value="<%= movie['id'] %>">
+        <%= movie['movie_name'] %>
+      </option>
+    <% end %>
+  </select>
 </form>
