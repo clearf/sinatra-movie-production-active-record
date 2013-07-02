@@ -1,0 +1,14 @@
+<h1>Add A New Movie</h1>
+<form action="/movies/new" method="post">
+  <input type="text" placeholder="name" name="name">
+    <select name="person_id">
+      <% @people.each do |person| %>
+      <option value="<%= person['id'] %>">
+        <%= person['name'] %>
+        <% end %>
+      </option>
+    </select>
+  <button>Add New Movie</button>
+</form>
+
+<p><a href="/movies">Movies</a></p>

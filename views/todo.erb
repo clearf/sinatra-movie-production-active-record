@@ -1,0 +1,22 @@
+ class="buttons"<h1>Task: <%= @task_details['name'].capitalize %></h1>
+<h2>Details: <%= @task_details['description'] %></h2>
+<% @movie_details.each do |movie| %>
+  <% if movie['id'] == @task_details['movie_id'] %>
+  <p>Movie: <%= movie['name'] %></p>
+  <% else %>
+  <% end %>
+<% end %>
+<p></p>
+<% @people_details.each do |person| %>
+ <% if person['id'] == @task_details['person_id'] %>
+  <p>Person: <%= person['name'] %></p>
+  <% else %>
+  <% end %>
+<% end %>
+<p></p>
+<form action="/tasks/<%= @task_details['id'] %>/delete" method="post">
+<button>DELETE TASK</button>
+</form>
+
+<p><a  href="/tasks/<%= @task_details['id'] %>/edit">Edit Task</a></p>
+<p><a href="/tasks">Tasks</a></p>

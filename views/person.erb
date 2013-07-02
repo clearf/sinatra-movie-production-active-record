@@ -1,0 +1,22 @@
+<h1>Name: <%= @person.name.capitalize %></h1>
+<h2>Tasks:</h2>
+<ul>
+  <%  @tasks.each do |task|%>
+  <li><a href="/tasks/<%= task['id'] %>"><%= task['name'].capitalize %></a></li>
+    <ul>
+      <li><%= task['description'] %></li>
+    </ul>
+</ul>
+<% end %>
+
+<h2>Movies:</h2>
+<ul>
+   <% @movies.each do |movie| %>
+  <li><a href="/movies/<%= movie['id'] %>"><%= movie['name'].capitalize %></a></li>
+  <% end %>
+</ul>
+
+<form action="/people/<%= @person_details['id'] %>/delete" method="post">
+<button>DELETE CONTACT</button>
+<p><a href="/people/<%= @person_details['id']%>/edit">Edit Name</a></p>
+<p><a href="/people">People</a></p>
