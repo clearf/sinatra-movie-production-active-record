@@ -1,3 +1,5 @@
-<% @movies.each do |movie| %>
-  <%= movie['movie_name'] %>
-<% end %>
+<ul>
+  <% @movies.each do |movie| %>
+    <li><%= movie['movie_name'] %></li>
+  <% end %>
+</ul>
