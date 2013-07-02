@@ -64,17 +64,14 @@ end
 
 # updates the details of a task
 post '/todos/:id' do 
-	urgent = params[:urgent]
-	if urgent.nil?
-		urgent = false
-	else 
-		urgent = true
-	end
-	sql = "UPDATE tasks SET (task, details, due, urgent, person_id, movie_id)"\
-	" = ('#{params[:task]}', '#{params[:details]}', '#{params[:due]}', "\
-	" '#{urgent}', #{params[:person_id]}, #{params[:movie_id]}) WHERE id = "\
-	" #{params[:id]}"
-	run_sql(sql)
+
+	todo = Task.find(params[:id])
+	todo.task = params	[:task]
+	todo.details = params[:details]
+	todo.due = params[:due]
+	todo.urgent = params[:urgent]
+	todo.person_id = params[:person_id]
+	todo.movie_id = params[:movie_id]
 	redirect to('/todos')
 end
 
