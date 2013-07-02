@@ -1,0 +1,11 @@
+<form action="/tasks/new" method="post">
+  <input type="text" name="task_name">
+  <input type="text" name="description">
+  <select name="person_id">
+    <% @people.each do |person| %>
+      <option value="<%= person['id'] %>">
+        <%= person['person_name'] %>
+      </option>
+    <% end %>
+  </select>
+</form>

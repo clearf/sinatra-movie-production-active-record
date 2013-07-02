@@ -3,7 +3,7 @@
   <input type="text" name="director">
   <select name="movie_id">
     <% @movies.each do |movie| %>
-      <option value='<%= movie['id'] %>'>
+      <option value="<%= movie['id'] %>">
         <%= movie['movie_name'] %>
       </option>
     <% end %>

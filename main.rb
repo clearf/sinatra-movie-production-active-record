@@ -88,6 +88,13 @@ get '/tasks' do
   erb :todos
 end
 
+# This should add a new task
+get '/tasks/new' do
+  sql_input = "SELECT id, person_name FROM people"
+  @people = run_sql(sql_input)
+  erb :new_todo
+end
+
 # This should list a single task
 get '/tasks/:id' do
   id = params[:id]
