@@ -2,6 +2,8 @@ require 'pry'
 require 'pg'
 require 'sinatra'
 require 'sinatra/reloader' if development?
+require 'rake'
+require 'sinatra/activerecord'
 
 # helper function that runs an input sql string
 def run_sql(sql)
