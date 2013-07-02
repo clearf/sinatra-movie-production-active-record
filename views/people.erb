@@ -1,0 +1,15 @@
+<h1>People</h1>
+
+<div class="list">
+<% @people.each do |person| %>
+  <a href="/people/<%= person['id'] %>" class="sublist">
+    <%= person['name'] %><br/>
+  </a>
+<% end %>
+<br/>
+<br/>
+<a href="/new_person">Add a New Person</a>
+<br/>
+<br/>
+<a href="/">Back to Index</a>
+</div>

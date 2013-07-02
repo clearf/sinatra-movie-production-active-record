@@ -1,0 +1,41 @@
+html {background-color: #D4D6FF;}
+
+h1 {
+  color: #424699;
+  font-family: Arial;
+  margin-left: 15px
+}
+
+h2 {
+  color: #424699;
+  font-family: Arial;
+  margin-left: 15px
+}
+
+#home {
+  width: 60px;
+  line-height: 1.62;
+  font-size: 120%;
+  color: #424699;
+}
+
+.list {
+  width: 200px;
+  line-height: 1.62;
+  font-size: 120%;
+  color: #424699;
+}
+
+.sublist {
+  color: gray;
+}
+
+a {color: #424699;}
+
+div {
+  background-color: #FAFFBD;
+  padding: 15px;
+  border-radius: 10px;
+  width: 200px;
+}
+

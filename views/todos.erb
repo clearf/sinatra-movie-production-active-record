@@ -1,0 +1,15 @@
+<h1>Tasks</h1>
+
+<div class="list">
+<% @tasks.each do |todo| %>
+  <a href="/todos/<%= todo['id'] %>" class="sublist">
+    <%= todo['name'] %><br/>
+  </a>
+<% end %>
+<br/>
+<br/>
+<a href="/new_todo">Create a New Task</a>
+<br/>
+<br/>
+<a href="/">Back to Index</a>
+</div>
