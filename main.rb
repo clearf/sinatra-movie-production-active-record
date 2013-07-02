@@ -49,37 +49,32 @@ end
 
 
 # #Individual People Page
-# get '/people/:id' do
-# @person = Person.find(params[:id])
-# sql = "SELECT * FROM people WHERE id ='#{@person}'"
-# @person_details = run_sql(sql).first
-# sql = "SELECT * FROM tasks where person_id ='#{@person}'"
-# @tasks = run_sql(sql)
-# sql = "SELECT * FROM movies where person_id ='#{@person}'"
-# @movies = run_sql(sql)
-# erb :person
-# end
+get '/people/:id' do
+@person = Person.find(params[:id])
+@person_details = Person.find(params[:id])
+@tasks = Task.find_by_person_id(params[:id])
+@movies = Movie.find_by_person_id(params[:id])
+erb :person
+end
 
 post '/people/:id/delete' do
   Person.find(params[:id]).destroy
   redirect to ('/people')
 end
 
-# #Edit People
-# get '/people/:id/edit' do
-#   @person_id = params[:id]
-#   sql = "SELECT * FROM people WHERE id='#{@person_id}'"
-#   @person_details = run_sql(sql).first
-#   erb :edit_person
-# end
+#Edit People
+get '/people/:id/edit' do
+  @person_id = params[:id]
+  @person_details = Person.find(params[:id])
+  erb :edit_person
+end
 
-# post '/people/:id' do
-#   person_id = params[:id]
-#   name = params[:name]
-#   sql = "UPDATE people SET (name) = ('#{name}') WHERE id =#{person_id}"
-#   run_sql(sql)
-#   redirect to('/people')
-# end
+post '/people/:id' do
+  person = Person.find(params[:id])
+  person.name = params[:name]
+  person.save
+  redirect to('/people')
+end
 
 #list movies
 get '/movies' do
