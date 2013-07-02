@@ -177,3 +177,23 @@ get '/tasks/:id/edit' do
   erb :edit_task
 end
 
+# This should send a post request to the url
+post '/tasks/:id/edit' do
+  id = params[:id]
+  task_name = params[:task_name]
+  description = params[:description]
+  person_id = params[:person_id]
+  movie_id = params[:movie_id]
+  sql_input = "UPDATE tasks SET (task_name, description, person_id, movie_id) = ('#{task_name}', '#{description}', #{person_id}, #{movie_id}) WHERE id = #{id}"
+  run_sql(sql_input)
+  redirect to('/tasks')
+end
+
+
+
+
+
+
+
+
+
