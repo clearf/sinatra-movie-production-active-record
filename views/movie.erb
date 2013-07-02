@@ -1,2 +1,6 @@
 <h2><%= @movie['movie_name'] %></h2>
 <p>Release Date: <%= @movie['release_date'] %></p>
+
+<form action="/movies/<%= @movie['id'] %>/delete" method="post">
+  <button>Delete</button>
+</form>

@@ -52,12 +52,25 @@ get '/movies/:id/edit' do
   erb :edit_movie
 end
 
+# This should send a post request to the url
 post '/movies/:id/edit' do
   id = params[:id]
   movie_name = params[:movie_name]
   release_date = params[:release_date]
   sql_input = "UPDATE movies SET (movie_name, release_date) = ('#{movie_name}', '#{release_date}') WHERE id = #{id}"
   run_sql(sql_input)
+  redirect to('/movies')
+end
+
+# This should delete a movie
+post '/movies/:id/delete' do
+  id = params[:id]
+  sql_input = "UPDATE people SET (movie_id) = (null) WHERE movie_id = #{id}"
+  run_sql(sql_input)
+  second_sql_input = "UPDATE tasks SET (movie_id) = (null) WHERE movie_id = #{id}"
+  run_sql(second_sql_input)
+  third_sql_input = "DELETE FROM movies WHERE id = #{id}"
+  run_sql(third_sql_input)
   redirect to('/movies')
 end
 
