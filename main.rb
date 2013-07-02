@@ -170,6 +170,10 @@ post '/people' do
 	redirect to('/people')
 end
 
+get '/people/new' do
+	erb :new_person
+end
+
 get '/people/:id' do 
 	sql = "SELECT * FROM people WHERE id = #{params[:id]}"
 	@person = run_sql(sql).first
@@ -180,6 +184,23 @@ get '/people/:id/edit' do
 	sql = "SELECT * FROM people WHERE id = #{params[:id]}"
 	@person = run_sql(sql).first
 	erb :edit_person
+end
+
+post '/people/:id/edit' do
+	sql = "UPDATE people SET (name, email) = ('#{params[:name]}', '#{params[:email]}')"\
+	"WHERE id = #{params[:id]}"
+	run_sql(sql)
+	redirect to('/people')
+end
+
+get '/people/:id/delete' do
+	tasks_sql = "UPDATE tasks SET person_id = 1 WHERE person_id = #{params[:id]}"
+	run_sql(tasks_sql)
+	movies_sql = "UPDATE movies SET director_id = 1 WHERE director_id = #{params[:id]}"
+	run_sql(movies_sql)
+	sql = "DELETE FROM people WHERE id = #{params[:id]}"
+	run_sql(sql)
+	redirect to('/people')
 end
 
 

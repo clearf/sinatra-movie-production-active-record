@@ -1,5 +1,7 @@
-<form action = "/people" method = "post">
+<form action = "/people/<%=@person['id']%>/edit" method = "post" class = "pure-form pure-form-stacked">
+	<label> Name </label>
 	<input type = "text" name = "name" value = "<%=@person['name']%>">
-	<input type = "text" name = "email" value = "<%=@person['email']%>">
-	<button>Edit This Person</button>
+	<label> Email </label>
+	<input type = "text" name = "email" value = "<%=@person['email']%>"><br>
+	<button class="pure-button">Edit This Person</button>
 </form>

@@ -1,7 +1,9 @@
-<form action = '/movies' method = "post">
+<form action = '/movies' method = "post" class = "pure-form pure-form-stacked">
+	<label>Name</label>
 	<input type="text" name="title" placeholder="title"><br>
+	<label>Description</label>
 	<input type="text" name="description"placeholder="description"><br>
-	<label for="director_id"> Director <br>
+	<label for="director_id"> Director 
 		<select name = "director_id">
 			<%@people.each do |person|%>
 				<option value = "<%=person["id"]%>">

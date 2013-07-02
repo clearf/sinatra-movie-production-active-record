@@ -1,7 +1,9 @@
-<form action = '/movies/<%=@movie["id"]%>' method = "post">
-	<input type="text" name="title" value="<%=@movie['title']%>"><br>
-	<input type="text" name="description" value = "<%=@movie['description']%>"><br>
-	<label for="director_id"> Director <br>
+<form action = '/movies/<%=@movie["id"]%>' method = "post" class = "pure-form pure-form-stacked">
+	<label> Title </label>
+	<input type="text" name="title" value="<%=@movie['title']%>">
+	<label> Description </label>
+	<input type="text" name="description" value = "<%=@movie['description']%>">
+	<label for="director_id"> Director
 		<select name = "director_id">
 			<%@people.each do |person|%>
 				<option value = "<%=person["id"]%>" selected = "<%=@director['name']%>">
