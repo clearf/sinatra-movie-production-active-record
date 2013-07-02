@@ -4,15 +4,6 @@ require 'pg'
 require 'pry' if development?
 require 'sinatra/activerecord'
 
-helpers do
-  def run_sql(sql)
-    db = PG.connect(dbname: 'movies', host: 'localhost')
-    result = db.exec(sql)
-    db.close
-    result
-  end
-end
-
 get '/' do
   erb :index
 end
