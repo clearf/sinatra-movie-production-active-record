@@ -43,6 +43,7 @@ post '/todos' do
 	else 
 		 params[:urgent] = true
 	end
+	Task.create(paramsm)
 	redirect to('/todos')
 end
 
@@ -57,14 +58,13 @@ end
 get '/todos/:id' do
 	
 	@todo = Task.find(params[:id])
-	@person = Task.person
-	@movie = Task.movie
+	@person = @todo.person
+	@movie = @todo.movie
 	erb :todo 
 end
 
 # updates the details of a task
 post '/todos/:id' do 
-
 	todo = Task.find(params[:id])
 	todo.task = params	[:task]
 	todo.details = params[:details]
@@ -77,16 +77,12 @@ end
 
 # retrieves the necessary data to update a task (people, movies, task details)
 get '/todos/:id/edit' do 
-	sql = "SELECT * FROM tasks WHERE id = #{params[:id]}"
-	movies_sql = "SELECT * FROM movies" 
-	people_sql = "SELECT * FROM people"
-	@todo = run_sql(sql).first
-	@movies = run_sql(movies_sql)
-	@people = run_sql(people_sql)
-	current_person_sql = "SELECT * from people WHERE id = #{@todo['person_id']}"
-	current_movie_sql = "SELECT * FROM people WHERE id = #{@todo['movie_id']}"
-	@current_person = run_sql(current_person_sql).first
-	@current_movie = run_sql(current_movie_sql).first
+	
+	@todo = Task.find(params[:id])
+	@movies = Movie.all
+	@people = Person.all
+	@current_person = @todo.person
+	@current_movie = @todo.movie
 	erb :edit_todo
 end
 

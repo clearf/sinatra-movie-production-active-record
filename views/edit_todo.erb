@@ -6,9 +6,9 @@
 	<label>Due</label>
 	<input type = "date" name = "due" value = "<%=@todo["due"]%>">
 	<label for="urgent">
-		Urgent: <input type = "radio" name = "urgent" value = "true" <%=return "checked" if @todo["urgent"]%>> 
-		Not Urgent: <input type = "radio" name = "urgent" value = "false" <%=return "checked" unless @todo["urgent"]%>>
-	</label>
+		Urgent: <input type = "radio" name = "urgent" value = "true" checked> 
+		Not Urgent: <input type = "radio" name = "urgent" value = "false" >
+	</label><br>
 	<label> Assign Task to:</label>
 	<select name = "person_id">
 		<%@people.each do |person|%>
@@ -16,7 +16,7 @@
 				<%=person["name"] %>
 			</option>
 		<%end%>
-	</select>
+	</select><br>
 	<label> For Production on:</label>
 	<select name = "movie_id">
 		<%@movies.each do |movie|%>
