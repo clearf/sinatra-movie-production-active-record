@@ -148,11 +148,8 @@ get '/movies/:id/edit' do
 end
 
 get '/movies/:id/delete' do
-	tasks_sql = "SELECT * FROM tasks WHERE movie_id = #{params[:id]}"
-	run_sql(tasks_sql).each do |task|
-		task["movie_id"] = 1
-	end
-	
+	tasks_sql = "UPDATE tasks SET movie_id = 1 WHERE movie_id = #{params[:id]}"
+	run_sql(tasks_sql)
 	sql = "DELETE FROM movies WHERE id = #{params[:id]}"
 	run_sql(sql)
 	redirect to('/movies')
