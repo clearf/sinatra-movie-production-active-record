@@ -3,7 +3,7 @@ class MoviesAgain < ActiveRecord::Migration
   	create_table :movies do |t|
   		t.string :title
   		t.string :description
-  		t.references :director
+  		t.references :person
   		t.timestamps
   	end
   end

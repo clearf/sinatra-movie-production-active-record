@@ -123,7 +123,7 @@ end
 
 get '/movies/:id' do 
 	@movie = Movie.find(params[:id])
-	@director = Person.find(@movie.director_id)
+	@director = Person.find(@movie.person_id)
 	erb :movie
 end
 
@@ -131,14 +131,14 @@ post '/movies/:id' do
 	movie = Movie.find(params[:id])
 	movie.title = params[:title]
 	movie.description = params[:description]
-	movie.director_id = params[:director_id]
+	movie.person_id = params[:person_id]
 	movie.save
 	redirect to('/movies')
 end
 
 get '/movies/:id/edit' do
 	@movie = Movie.find(params[:id])
-	@director = Person.find(@movie.director_id)
+	@director = Person.find(@movie.person_id)
 	@people = Person.all
 	erb :edit_movie
 end
@@ -186,7 +186,7 @@ post '/people/:id/edit' do
 end
 
 get '/people/:id/delete' do
-	# Movie.find_all_by_director_id(params[:id]).each do |movie|
+	# Movie.find_all_by_person_id(params[:id]).each do |movie|
 	# 	movie.destroy
 	# end
 	# Task.find_all_by_person_id(params[:id]).each do |task|
