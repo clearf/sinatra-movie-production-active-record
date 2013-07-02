@@ -12,10 +12,13 @@ set :database, {
 }
 
 class Person < ActiveRecord::Base
+	has_many :movies
+	has_many :tasks
 end
 
 class Movie < ActiveRecord::Base
 	belongs_to :person
+	has_many :tasks
 end
 
 class Task < ActiveRecord::Base
@@ -29,7 +32,6 @@ end
 
 # lists all of the tasks that require completion
 get '/todos' do
-	
 	@todos = Task.all
 	erb :todos
 end
@@ -68,7 +70,7 @@ post '/todos/:id' do
 	else 
 		urgent = true
 	end
-		sql = "UPDATE tasks SET (task, details, due, urgent, person_id, movie_id)"\
+	sql = "UPDATE tasks SET (task, details, due, urgent, person_id, movie_id)"\
 	" = ('#{params[:task]}', '#{params[:details]}', '#{params[:due]}', "\
 	" '#{urgent}', #{params[:person_id]}, #{params[:movie_id]}) WHERE id = "\
 	" #{params[:id]}"
@@ -130,21 +132,22 @@ post '/movies/:id' do
 	movie.title = params[:title]
 	movie.description = params[:description]
 	movie.director_id = params[:director_id]
+	movie.save
 	redirect to('/movies')
 end
 
 get '/movies/:id/edit' do
 	@movie = Movie.find(params[:id])
 	@director = Person.find(@movie.director_id)
-	@people = People.all
+	@people = Person.all
 	erb :edit_movie
 end
 
 get '/movies/:id/delete' do
-	tasks_sql = "UPDATE tasks SET movie_id = 1 WHERE movie_id = #{params[:id]}"
-	run_sql(tasks_sql)
-	sql = "DELETE FROM movies WHERE id = #{params[:id]}"
-	run_sql(sql)
+	Task.find_all_by_movie_id(params[:id]).each do |task|
+		task.destroy
+	end
+	Movie.find(params[:id]).destroy
 	redirect to('/movies')
 end
 
@@ -183,10 +186,21 @@ post '/people/:id/edit' do
 end
 
 get '/people/:id/delete' do
-	binding.pry
-	@person = Person.find(params[:id])
-	@movies = Movie.find_by_director(params[:id])
-	@tasks = Task.find_by_person(params[:id])
+	# Movie.find_all_by_director_id(params[:id]).each do |movie|
+	# 	movie.destroy
+	# end
+	# Task.find_all_by_person_id(params[:id]).each do |task|
+	# 	task.person_id = nil
+	# 	task.save
+	# end
+	person = Person.find(params[:id])
+	person.movies.each do |movie|
+		movie.destroy
+	end
+	person.tasks.each do |task|
+		task.destroy
+	end
+	# Person.find(params[:id]).destroy
 	redirect to('/people')
 end
 
