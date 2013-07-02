@@ -38,11 +38,6 @@ end
 
 # adds a new todo to the lists of tasks to be done
 post '/todos' do 
-	if  params[:urgent].nil?
-		 params[:urgent] = false
-	else 
-		 params[:urgent] = true
-	end
 	Task.create(paramsm)
 	redirect to('/todos')
 end
@@ -66,9 +61,9 @@ end
 # updates the details of a task
 post '/todos/:id' do 
 	todo = Task.find(params[:id])
-	todo.task = params	[:task]
 	todo.details = params[:details]
 	todo.due = params[:due]
+	todo.task = params[:task]
 	todo.urgent = params[:urgent]
 	todo.person_id = params[:person_id]
 	todo.movie_id = params[:movie_id]
@@ -179,13 +174,7 @@ post '/people/:id/edit' do
 end
 
 get '/people/:id/delete' do
-	# Movie.find_all_by_person_id(params[:id]).each do |movie|
-	# 	movie.destroy
-	# end
-	# Task.find_all_by_person_id(params[:id]).each do |task|
-	# 	task.person_id = nil
-	# 	task.save
-	# end
+
 	person = Person.find(params[:id])
 	person.movies.each do |movie|
 		movie.destroy
@@ -193,7 +182,7 @@ get '/people/:id/delete' do
 	person.tasks.each do |task|
 		task.destroy
 	end
-	# Person.find(params[:id]).destroy
+	Person.find(params[:id]).destroy
 	redirect to('/people')
 end
 
