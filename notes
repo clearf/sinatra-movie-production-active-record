@@ -1,0 +1,11 @@
+Things I would do if I had more time:
+
+-Allow the user to type in any name for a film's director, check the database for that name, and if the name is absent, ask user if he wants to add to contacts
+
+-Comment code and check for consistent indenting and quotation marks (double v. single)
+
+-On edit task page, initialize drop-down menus to display the name of the current assignee/film
+
+-Alphabetize the contact and movie lists
+
+-Make notation of the booleans entirely consistent ('y' or 'n' to the user)

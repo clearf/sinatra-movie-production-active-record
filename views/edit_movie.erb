@@ -1,0 +1,29 @@
+<h4>Edit <%= @movie['title'] %></h4>
+
+<form action='/edit_movie/<%= @movie['id'] %>' method='post'>
+  <ul>
+
+    <li>
+      Title: <input type="text" name="title" value="<%= @movie['title'] %>">
+    </li>
+
+    <li>Director:
+      <select name="director_id">
+        <% @people.each do |person| %>
+          <option name="director_id" value="<%= person['id'] %>">
+          <%= person['name'] %>
+        <% end %>
+      </select>
+    </li>
+
+    <li>
+      Year of release: <input type="text" name="year" value="<%= @movie['year'] %>">
+    </li>
+
+    <li>
+      Image: <input type="text" name="image" value="<%= @movie['image'] %>">
+    </li>
+
+  </ul>
+  <button>Done!</button>
+</form>
