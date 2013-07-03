@@ -25,7 +25,7 @@ class Todo < ActiveRecord::Base
   belongs_to :movies
 end
 
-# binding.pry
+binding.pry
 
 get '/' do
   erb :index
@@ -33,8 +33,7 @@ end
 
 # This should list movies
 get '/movies' do
-  sql_input = "SELECT * FROM movies"
-  @movies = run_sql(sql_input)
+  @movies = Movie.all
   erb :movies
 end
 
