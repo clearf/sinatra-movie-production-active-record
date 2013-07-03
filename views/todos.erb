@@ -1,5 +1,7 @@
 <ul>
-  <% @tasks.each do |task| %>
-    <li><%= task['task_name'] %></li>
+  <% @todos.each do |todo| %>
+    <li>
+      <a href="/todos/<%= todo.id %>"><%= todo.name %></a>
+    </li>
   <% end %>
 </ul>

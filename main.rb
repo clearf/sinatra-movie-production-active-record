@@ -129,9 +129,8 @@ post '/people/:id/delete' do
 end
 
 # This should list tasks
-get '/tasks' do
-  sql_input = "SELECT * FROM tasks"
-  @tasks = run_sql(sql_input)
+get '/todos' do
+  @todos = Todo.all
   erb :todos
 end
 
