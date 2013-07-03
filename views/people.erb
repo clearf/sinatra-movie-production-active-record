@@ -1,0 +1,20 @@
+<h2>Your Contacts</h2>
+<ul>
+  <% @people.each do |person| %>
+    <li>
+      <a href="/people/<%= person['id'] %>"><%= person['name'] %></a>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Add a person</h2>
+<form action="/new_person" method="post">
+  <ul>
+    <li>Name: <input type="text" name="name"></li>
+    <li>Title: <input type="text" name="title"></li>
+    <li>Phone: <input type="text" name="phone"></li>
+    <button>Add</button>
+  </ul>
+</form>
+
+<p><a href="/">Back to home page</a></p>

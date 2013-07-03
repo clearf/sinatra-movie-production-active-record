@@ -1,0 +1,36 @@
+<form action='/edit_task/<%= @task.id %>' method='post'>
+  <ul>
+
+    <li>
+      Task: <input type="text" name="task" value="<%= @task.task %>">
+    </li>
+
+    <li>
+      Notes: <input type="text" name="description" value="<%= @task.description %>">
+    </li>
+
+    <li>Person assigned to:
+      <select name="person_id">
+        <% @people.each do |person| %>
+          <option name="person_id" value="<%= person.id %>">
+          <%= person.name %>
+        <% end %>
+      </select>
+    </li>
+
+    <li>For film:
+      <select name="movie_id">
+        <% @movies.each do |movie| %>
+          <option name="movie_id" value="<%= movie.id %>">
+          <%= movie.title %>
+        <% end %>
+      </select>
+    </li>
+
+    <li>
+      Completed? (Enter y or n.) <input type="text" name="completed" value="<%= @task.completed %>">
+    </li>
+
+  </ul>
+  <button>Done!</button>
+</form>

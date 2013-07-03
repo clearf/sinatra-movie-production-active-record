@@ -1,0 +1,51 @@
+<div class="item-list">
+  <h2>Tasks for Your Underlings</h2>
+    <ul>
+      <% @tasks.each do |task| %>
+        <li>
+          <h6><%= task['task'] %></h6>
+          <p>Completed?
+            <% if task['completed'] == true %>
+              <span class="completed">y</span>
+            <% else %>
+              <span class="completed">n</span>
+            <% end %>
+          </p>
+          <div class="task-buttons">
+            <form action='/tasks/<%= task['id'] %>' method='get'>
+              <button>View more and edit</button>
+            </form>
+            <form action='/delete_task/<%= task['id'] %>' method='post'>
+              <button>Delete task</button>
+            </form>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+    <p><a href="/movies">View and manage films</a> | <a href="/people">View and manage contacts</a></p>
+</div>
+
+<div class="add-form">
+  <h2>Add a task</h2>
+  <form action="/new_task" method="post">
+  <ul>
+    <li>Task: <input type="text" name="task"></li>
+    <li>Notes: <input type="text" name="description"></li>
+    <li>Person assigned to:
+      <select name="person_id">
+        <% @people.each do |person| %>
+          <option name="person_id" value="<%= person['id'] %>">
+          <%= person['name'] %>
+        <% end %>
+      </select></li>
+    <li>For film:
+      <select name="movie_id">
+        <% @movies.each do |movie| %>
+          <option name="movie_id" value="<%= movie['id'] %>" />
+          <%= movie['title'] %>
+        <% end %>
+      </select></li>
+    <button>Add</button>
+  </ul>
+  </form>
+</div>

@@ -1,0 +1,20 @@
+<h4>Edit <%= @person['name'] %></h4>
+
+<form action='/edit_person/<%= @person['id'] %>' method='post'>
+  <ul>
+
+    <li>
+      Name: <input type="text" name="name" value="<%= @person['name'] %>">
+    </li>
+
+    <li>
+      Title: <input type="text" name="title" value="<%= @person['title'] %>">
+    </li>
+
+    <li>
+      Phone number: <input type="text" name="phone" value="<%= @person['phone'] %>">
+    </li>
+
+  </ul>
+  <button>Done!</button>
+</form>
