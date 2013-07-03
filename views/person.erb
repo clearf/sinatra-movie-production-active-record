@@ -1,0 +1,7 @@
+<h2><%= @person.name %></h2>
+<a href="/people/<%= @person.id %>/edit">Edit</a>
+<form action="/people/<%= @person.id %>/delete" method="post">
+  <button>Delete</button>
+</form>
+<a href="/people">People</a><br/>
+<a href="/">Index</a>

@@ -1,0 +1,8 @@
+<ul>
+  <% @people.each do |person| %>
+    <li>
+      <a href="/people/<%= person.id %>"><%= person.name %></a>
+    </li>
+  <% end %>
+</ul>
+<a href="/">Index</a>

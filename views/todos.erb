@@ -1,0 +1,8 @@
+<ul>
+  <% @todos.each do |todo| %>
+    <li>
+      <a href="/todos/<%= todo.id %>"><%= todo.name %></a>
+    </li>
+  <% end %>
+</ul>
+<a href="/">Index</a>

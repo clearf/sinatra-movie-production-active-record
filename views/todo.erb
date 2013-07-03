@@ -1,0 +1,11 @@
+<h2><%= @todo.name %></h2>
+<p>Description: <%= @todo.description %></p>
+<p>Due date: <%= @todo.due_date %></p>
+<p>Movie: <%= @movie.name %></p>
+<p>Contact: <%= @person.name %></p>
+<a href="/todos/<%= @todo.id %>/edit">Edit</a>
+<form action="/todos/<%= @todo.id %>/delete" method="post">
+  <button>Delete</button>
+</form>
+<a href="/todos">To-dos</a><br/>
+<a href="/">Index</a>

@@ -1,0 +1,16 @@
+<form action="/movies/<%= @movie.id %>/edit" method="post">
+  <label for="name">Enter a movie title</label><br/>
+  <input type="text" name="name" value="<%= @movie.name %>" autofocus="true"><br/>
+  <label for="release_date">Enter a release date</label><br/>
+  <input type="text" name="release_date" value="<%= @movie.release_date %>"><br/>
+  <select name="person_id">
+    <% @people.each do |person| %>
+      <option value="<%= person.id %>">
+        <%= person.name %>
+      </option>
+    <% end %>
+  </select><br>
+  <button>Submit changes</button>
+</form>
+<a href="/movies">Movies</a><br/>
+<a href="/">Index</a>

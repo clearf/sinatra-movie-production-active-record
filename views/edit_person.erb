@@ -1,0 +1,7 @@
+<form action="/people/<%= @person.id %>/edit" method="post">
+  <label for="name">Enter name</label><br/>
+  <input type="text" name="name" value="<%= @person.name %>" autofocus="true"><br/>
+  <button>Submit changes</button>
+</form>
+<a href="/people">People</a><br/>
+<a href="/">Index</a>

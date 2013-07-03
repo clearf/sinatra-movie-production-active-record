@@ -1,0 +1,27 @@
+<form action="/todos/new" method="post">
+  <label for="name">Enter a to-do name</label><br/>
+  <input type="text" name="name" autofocus="true"><br/>
+  <label for="description">Enter a description</label><br/>
+  <input type="text" name="description"><br/>
+  <label for="due_date">Enter a due date (mm/dd/yy)</label><br/>
+  <input type="text" name="due_date"><br/>
+  <label for="person_id">Select a director</label><br/>
+  <select name="person_id">
+    <% @people.each do |person| %>
+      <option value="<%= person.id %>">
+        <%= person.name %>
+      </option>
+    <% end %>
+  </select><br/>
+  <label for="movie_id">Select a movie title</label><br/>
+  <select name="movie_id">
+    <% @movies.each do |movie| %>
+      <option value="<%= movie.id %>">
+        <%= movie.name %>
+      </option>
+    <% end %>
+  </select><br/>
+  <button>Submit</button>
+</form>
+<a href="/todos">To-dos</a><br/>
+<a href="/">Index</a>
