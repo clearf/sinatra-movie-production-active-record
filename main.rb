@@ -108,6 +108,7 @@ end
 #Individual Movie Page
 get '/movies/:id' do
   @movie_details = Movie.find(params[:id])
+  @director = Person.find(@movie_details.person_id).name
   erb :movie
 end
 
