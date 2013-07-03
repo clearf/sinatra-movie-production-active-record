@@ -1,9 +1,7 @@
 <h1>List of Movies:</h1>
-<ul>
 <% @movies.each do |movie| %>
-<li class="list_item"><a  href="/movies/<%= movie['id'] %>"><%= movie['name'].capitalize %></a></li>
+<p class="list_item"><a  href="/movies/<%= movie['id'] %>"><%= movie['name'].capitalize %></a></p>
 <% end %>
-</ul>
 
 <p><a class="add_a_new" href="/movies/new">Add A New Movie</a></p>
 

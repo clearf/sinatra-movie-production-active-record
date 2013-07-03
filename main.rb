@@ -10,6 +10,9 @@ set :database, {
   database: 'production',
   host: 'localhost'
 }
+########################
+######### MODEL  ########
+########################
 
     # t.string   "name"
     # t.datetime "created_at"
@@ -38,9 +41,15 @@ class Task < ActiveRecord::Base
   belongs_to :person
   belongs_to :movie
 end
+########################
+######### MODEL  ########
+########################
 
-binding.pry
+#------------------------#
 
+########################
+######## Controller #######
+########################
 get '/' do
   erb :home
 end
@@ -166,7 +175,7 @@ end
 post '/tasks/:id/delete' do
   @task_id = params[:id]
   Task.find(params[:id]).destroy
-redirect to ('/tasks')
+  redirect to ('/tasks')
 end
 
 #Edit Tasks
@@ -188,7 +197,9 @@ post '/tasks/:id/update' do
   redirect to('/tasks')
 end
 
-
+########################
+######## Controller #######
+########################
 
 
 

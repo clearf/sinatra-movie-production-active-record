@@ -1,11 +1,9 @@
 <h1>List of People:</h1>
-<ul>
 <% @people.each do |person| %>
-<li class="list_item">
+<p class="list_item">
   <a class="people_links" href="/people/<%= person['id'] %>"><%= person['name'].capitalize %></a>
-</li>
+</p>
 <% end %>
-</ul>
 
 <p><a href="/people/new">Add A New Person</a></p>
 
