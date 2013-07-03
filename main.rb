@@ -35,8 +35,8 @@ end
 
 get '/movies/:id' do
   id = params[:id]
+  movie_id = params[:movie_id]
   @movie = Movie.find(id)
-  @director = Person.find(movie_id)
   @people = Person.all
   erb :movie
 end
@@ -67,8 +67,10 @@ post '/edit_movie/:id' do
   person_id = params[:person_id]
   @movie = Movie.find(id)
   @people = Person.find(person_id)
-  @director = Person.find(person_id)
-  Movie.update_all(params)
+  @movie.title = title
+  @movie.release_date = release_date
+  @movie.person_id = person_id
+  @movie.save
   redirect to('/movies')
 end
 
