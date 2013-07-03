@@ -1,19 +1,25 @@
-<form action="/tasks/new" method="post">
-  <input type="text" name="task_name">
-  <input type="text" name="description">
+<form action="/todos/new" method="post">
+  <label for="name">Enter a to-do name</label><br/>
+  <input type="text" name="name" autofocus="true"><br/>
+  <label for="description">Enter a description</label><br/>
+  <input type="text" name="description"><br/>
+  <label for="due_date">Enter a due date (mm/dd/yy)</label><br/>
+  <input type="text" name="due_date"><br/>
+  <label for="person_id">Select a person</label><br/>
   <select name="person_id">
     <% @people.each do |person| %>
-      <option value="<%= person['id'] %>">
-        <%= person['person_name'] %>
+      <option value="<%= person.id %>">
+        <%= person.name %>
       </option>
     <% end %>
-  </select>
+  </select><br/>
+  <label for="movie_id">Select a movie</label><br/>
   <select name="movie_id">
     <% @movies.each do |movie| %>
-      <option value="<%= movie['id'] %>">
-        <%= movie['movie_name'] %>
+      <option value="<%= movie.id %>">
+        <%= movie.name %>
       </option>
     <% end %>
-  </select>
-  <button>Add task</button>
+  </select><br/>
+  <button>Submit</button>
 </form>
