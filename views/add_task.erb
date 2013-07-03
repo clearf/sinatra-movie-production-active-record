@@ -1,0 +1,29 @@
+<h1>Add a task</h1>
+
+<! Adding form for creating a task >
+<form action="/add_task" method="post">
+  <label for="name">Name</label><br>
+  <input type="text" name="name" autofocus><br>
+  <label for="description">Description</label><br>
+  <input type="text" name="description"><br>
+  <label for="done">Done?</label><br>
+  <input type="radio" name="done" value="false" checked> No
+  <input type="radio" name="done" value="true"> Yes<br>
+<! Creates dropdown menu for movie >
+  <select name="movie">
+    <% @movies.each do |movie| %>
+      <option value="<%= movie["id"] %>">
+        <%= movie["name"] %>
+      </option>
+    <% end %>
+  </select><br>
+<! Creates dropdown menu for person >
+  <select name="person">
+    <% @people.each do |person| %>
+      <option value="<%= person["id"] %>">
+        <%= person["name"] %>
+      </option>
+    <% end %>
+  </select><br><br>
+  <button>Add task</button><br>
+</form>

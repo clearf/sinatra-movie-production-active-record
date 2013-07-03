@@ -1,0 +1,13 @@
+<h1><%= @person['name'] %></h1>
+
+<h3>Tasks</h3>
+  <ul>
+    <% @tasks.each do |task| %>
+      <li><a href="/tasks/<%= task['id'] %>"><%= task['name'] %></a></li>
+    <% end %>
+  </ul>
+
+<form action="/people/<%= @person['id'] %>/delete" method="post">
+  <span class="warning">Warning: any tasks assigned to this person will also be removed!</span><br>
+  <button>Delete person</button><br>
+</form>

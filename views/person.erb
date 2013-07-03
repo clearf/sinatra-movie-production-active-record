@@ -1,0 +1,11 @@
+<h1><%= @person['name'] %></h1>
+
+<h3>Tasks</h3>
+  <ul>
+    <% @tasks.each do |task| %>
+      <li><a href="/tasks/<%= task['id'] %>"><%= task['name'] %></a></li>
+    <% end %>
+  </ul>
+
+<h3><a href="<%= @person['id'] %>/edit">Edit this person</a></h3>
+<h3><a href="<%= @person['id'] %>/delete">Delete this person</a></h3>

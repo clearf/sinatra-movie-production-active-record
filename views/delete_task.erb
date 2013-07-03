@@ -11,5 +11,7 @@
   <% end %></li>
 </ul>
 
-<h3><a href="<%= @task['id'] %>/edit">Edit this task</a></h3>
-<h3><a href="<%= @task['id'] %>/delete">Delete this task</a></h3>
+<form action="/tasks/<%= @task['id'] %>/delete" method="post">
+  <span class="warning">This task will be removed.</span><br>
+  <button>Delete task</button><br>
+</form>

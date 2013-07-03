@@ -21,8 +21,32 @@ class Task < ActiveRecord::Base
   belongs_to :movie
 end
 
-get '/new_todo'  do
+# index page - immediately redirects to list of movies
+get '/' do
+  redirect to '/movies'
 end
 
-post '/new_todo'  do
+# page with list of movies - basically index page
+get '/movies' do
+  @movies = Movie.all
+  erb :movies
+end
+
+# individual movie page
+get '/movies/:id' do
+  @movie = Movie.find(params[:id])
+  # sql_tasks = "select * from tasks where movie = #{id}"
+  @tasks = Task.find_all_by_movie_id(params[:id])
+  erb :movie
+end
+
+# page for adding a new person to the database
+get '/add_movie' do
+  erb :add_movie
+end
+
+# adds a new movie to the database once form is filled out
+post '/add_movie' do
+  movie = Movie.create(params)
+  redirect to '/movies'
 end

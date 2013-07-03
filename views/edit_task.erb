@@ -1,0 +1,36 @@
+<h1>Edit this task</h1>
+
+<! Adding form for updating a task >
+<! Value for input item leaves current database value as default >
+<form action="/tasks/<%= @id %>/edit" method="post">
+  <label for="name">Name</label><br>
+  <input type="text" name="name" value="<%= @task['name'] %>" autofocus><br>
+  <label for="director">Description</label><br>
+  <input type="text" name="description" value="<%= @task['description'] %>" autofocus><br>
+  <label for="name">Done</label><br>
+  <input type="radio" name="done" value="false" checked> No
+  <input type="radio" name="done" value="true"> Yes<br>
+<! Creates dropdown menu for movie - leaves current movie as default choice>
+  <select name="movie">
+    <% @movies.each do |movie| %>
+      <option value="<%= movie['id'] %>"
+        <% if movie['id'] == @task['movie'] %>
+          selected = "selected"
+          <% end %>>
+        <%= movie["name"] %>
+      </option>
+    <% end %>
+  </select><br>
+<! Creates dropdown menu for person - leaves current person as default choice>
+  <select name="person">
+    <% @people.each do |person| %>
+      <option value="<%= person['id'] %>"
+        <% if person['id'] == @task['person'] %>
+          selected = "selected"
+          <% end %>>
+        <%= person["name"] %>
+      </option>
+    <% end %>
+  </select><br><br>
+  <button>Update task</button><br>
+</form>
