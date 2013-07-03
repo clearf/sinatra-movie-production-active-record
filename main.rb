@@ -44,10 +44,7 @@ end
 
 # This should send a post request to this url
 post '/movies/new' do
-  movie_name = params[:movie_name]
-  release_date = params[:release_date]
-  sql_input = "INSERT INTO movies (movie_name, release_date) VALUES ('#{movie_name}', '#{release_date}')"
-  run_sql(sql_input)
+  movie = Movie.create(params)
   redirect to('/movies')
 end
 
