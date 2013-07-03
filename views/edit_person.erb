@@ -1,12 +1,5 @@
-<form action="/people/<%= @person['id'] %>/edit" method="post">
-  <input type="text" name="person_name" value="<%= @person['person_name'] %>" autofocus="true"><br/>
-  <input type="text" name="director" value="<% if @person['director'] == 't' %>yes<% else %>no<% end %>"><br/>
-  <select name="movie_id">
-    <% @movies.each do |movie| %>
-      <option value="<%= movie['id'] %>">
-        <%= movie['movie_name'] %>
-      </option>
-    <% end %>
-  </select><br/>
-  <button>Submit</button>
+<form action="/people/<%= @person.id %>/edit" method="post">
+  <label for="name">Enter name</label><br/>
+  <input type="text" name="name" value="<%= @person.name %>" autofocus="true"><br/>
+  <button>Submit changes</button>
 </form>

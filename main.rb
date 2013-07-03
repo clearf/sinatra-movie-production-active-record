@@ -96,7 +96,7 @@ end
 # This should send a post request to the url
 post '/people/new' do
   person = Person.create(params)
-  redirect to('/people')
+  redirect to "/people/#{person.id}"
 end
 
 # This should show details of a single person
@@ -109,27 +109,16 @@ end
 # This should edit a person
 get '/people/:id/edit' do
   id = params[:id]
-  sql_input = "SELECT * FROM people WHERE id = #{id}"
-  @person = run_sql(sql_input).first
-  second_sql_input = "SELECT id, movie_name FROM movies"
-  @movies = run_sql(second_sql_input)
+  @person = Person.find(id)
   erb :edit_person
 end
 
 # This should send a post request to the url
 post '/people/:id/edit' do
-  id = params[:id]
-  person_name = params[:person_name]
-  director = params[:director]
-  if director == "yes"
-    director = true
-  else
-    director = false
-  end
-  movie_id = params[:movie_id]
-  sql_input = "UPDATE people SET (person_name, director, movie_id) = ('#{person_name}', #{director}, #{movie_id}) WHERE id = #{id}"
-  run_sql(sql_input)
-  redirect to('/people')
+  person = Person.find(params[:id])
+  person.name = params[:name]
+  person.save
+  redirect to "/people/#{person.id}"
 end
 
 # This should delete a person
