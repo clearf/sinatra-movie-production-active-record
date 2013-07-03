@@ -1,4 +1,5 @@
 require 'pg'
+<<<<<<< HEAD
 require 'pry'
 require 'sinatra'
 require 'sinatra/reloader' if development?
@@ -96,3 +97,15 @@ post '/people/new' do
   People.create(params)
 redirect to '/people'
 end
+=======
+require 'sinatra'
+require 'sinatra/reloader' if development?
+
+
+
+get '/new_todo'  do
+end
+
+post '/new_todo'  do
+end
+>>>>>>> d2045a22c06761a1dfbc7dba531272a90ab69742
