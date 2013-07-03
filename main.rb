@@ -46,7 +46,7 @@ end
 # This should send a post request to this url
 post '/movies/new' do
   movie = Movie.create(params)
-  redirect to('/movies')
+  redirect to "/movies/#{movie.id}"
 end
 
 # This should show details of a single movie
@@ -70,18 +70,13 @@ post '/movies/:id/edit' do
   movie.name = params[:name]
   movie.release_date = params[:release_date]
   movie.save
-  redirect to('/movies')
+  redirect to "/movies/#{movie.id}"
 end
 
 # This should delete a movie
 post '/movies/:id/delete' do
   id = params[:id]
-  sql_input = "UPDATE people SET (movie_id) = (null) WHERE movie_id = #{id}"
-  run_sql(sql_input)
-  second_sql_input = "UPDATE tasks SET (movie_id) = (null) WHERE movie_id = #{id}"
-  run_sql(second_sql_input)
-  third_sql_input = "DELETE FROM movies WHERE id = #{id}"
-  run_sql(third_sql_input)
+  Movie.find(id).destroy
   redirect to('/movies')
 end
 
