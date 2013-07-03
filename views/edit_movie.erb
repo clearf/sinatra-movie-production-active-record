@@ -1,0 +1,13 @@
+<h1>Edit this movie</h1>
+
+<! Adding form for updating a movie >
+<! Value for input item leaves current database value as default >
+<form action="/movies/<%= @id %>/edit" method="post">
+  <label for="name">Name</label><br>
+  <input type="text" name="name" value="<%= @movie['name'] %>" autofocus><br>
+  <label for="director">Director</label><br>
+  <input type="text" name="director" value="<%= @movie['director'] %>" autofocus><br>
+  <label for="name">Release Date</label><br>
+  <input type="text" name="release_date" value="<%= @movie['release_date'] %>" autofocus><br>
+  <button>Update task</button><br>
+</form>

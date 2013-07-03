@@ -1,0 +1,9 @@
+<h1>Edit this person</h1>
+
+<! Adding form for updating a person >
+<! Value for input item leaves current database value as default >
+<form action="/people/<%= @id %>/edit" method="post">
+  <label for="name">Name</label><br>
+  <input type="text" name="name" value="<%= @person['name'] %>" autofocus><br>
+  <button>Update task</button><br>
+</form>

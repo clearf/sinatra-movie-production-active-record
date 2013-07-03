@@ -1,0 +1,11 @@
+<h1>People</h1>
+
+<!-- creates a list with the name of each person
+each list item includes a link to the page for that person -->
+<ul>
+<% @people.each do |person| %>
+  <li><a href="/people/<%= person['id'] %>"><%= person['name'] %></a></li>
+<% end %>
+</ul>
+
+<h3><a href="/add_person">Add a person</a></h3>

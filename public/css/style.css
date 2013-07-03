@@ -1,0 +1,41 @@
+header {
+  text-align: center;
+  font-size: 3em;
+  background-color: #0467A0;
+  color: #AA8080;
+}
+
+h1 {
+  color: #046788;
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+}
+
+.warning {
+  color: #A82456;
+}
+
+html {
+  background-color: #CCCCCC;
+}
+
+body {
+  background-color: #999999;
+}
+
+button {
+  color: #A82456;
+  background-color: #DDDDDD;
+  border-radius: 5px;
+}
+
+#change {
+  text-align: center;
+  font-size: 20px;
+  background-color: white;
+}
+
+form {
+  text-align: center;
+}

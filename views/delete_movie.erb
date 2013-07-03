@@ -10,5 +10,7 @@
     <% end %>
   </ul>
 
-<h3><a href="<%= @movie['id'] %>/edit">Edit this movie</a></h3>
-<h3><a href="<%= @movie['id'] %>/delete">Delete this movie</a></h3>
+<form action="/movies/<%= @movie['id'] %>/delete" method="post">
+  <span class="warning">Warning: any tasks regarding this movie will be removed!</span><br>
+  <button>Delete movie</button><br>
+</form>
