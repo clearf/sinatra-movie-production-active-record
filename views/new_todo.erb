@@ -5,7 +5,7 @@
   <input type="text" name="description"><br/>
   <label for="due_date">Enter a due date (mm/dd/yy)</label><br/>
   <input type="text" name="due_date"><br/>
-  <label for="person_id">Select a person</label><br/>
+  <label for="person_id">Select a director</label><br/>
   <select name="person_id">
     <% @people.each do |person| %>
       <option value="<%= person.id %>">
@@ -13,7 +13,7 @@
       </option>
     <% end %>
   </select><br/>
-  <label for="movie_id">Select a movie</label><br/>
+  <label for="movie_id">Select a movie title</label><br/>
   <select name="movie_id">
     <% @movies.each do |movie| %>
       <option value="<%= movie.id %>">

@@ -3,12 +3,13 @@
   <input type="text" name="name" autofocus="true"><br/>
   <label for="release_date">Enter a release date</label><br/>
   <input type="text" name="release_date"><br/>
+  <label for="person_id">Select a director</label><br/>
   <select name="person_id">
     <% @people.each do |person| %>
       <option value="<%= person.id %>">
         <%= person.name %>
       </option>
     <% end %>
-  </select><br>
+  </select><br/>
   <button>Submit</button>
 </form>
