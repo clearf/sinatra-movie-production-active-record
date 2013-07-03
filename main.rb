@@ -167,3 +167,38 @@ post '/add_task' do
   task = Task.create(params)
   redirect to '/tasks'
 end
+
+# page for editing a specific task
+get '/tasks/:id/edit' do
+  @id = params[:id]
+  @task = Task.find(params[:id])
+  @movies = Movie.all
+  @people = Person.all
+  erb :edit_task
+end
+
+# edits specific task once form is filled out
+post '/tasks/:id/edit' do
+  task = Task.find(params[:id])
+  task.name = params[:name]
+  task.description = params[:description]
+  task.done = params[:done]
+  task.movie = params[:movie]
+  task.person = params[:person]
+  task.save
+  redirect to "/tasks/#{task.id}"
+end
+
+# page for deleting a specific task
+get '/tasks/:id/delete' do
+  @task = Task.find(params[:id])
+  @person = Person.find(@task.person_id)
+  @movie = Movie.find(@task.movie_id)
+  erb :delete_task
+end
+
+# deletes specific task once form is filled out
+post '/tasks/:id/delete' do
+  Task.find(params[:id]).destroy
+  redirect to "/tasks"
+end

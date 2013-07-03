@@ -11,24 +11,24 @@
   <input type="radio" name="done" value="false" checked> No
   <input type="radio" name="done" value="true"> Yes<br>
 <! Creates dropdown menu for movie - leaves current movie as default choice>
-  <select name="movie">
+  <select name="movie_id">
     <% @movies.each do |movie| %>
       <option value="<%= movie['id'] %>"
-        <% if movie['id'] == @task['movie'] %>
+        <% if movie.id == @task.movie_id %>
           selected = "selected"
           <% end %>>
-        <%= movie["name"] %>
+        <%= movie.name %>
       </option>
     <% end %>
   </select><br>
 <! Creates dropdown menu for person - leaves current person as default choice>
-  <select name="person">
+  <select name="person_id">
     <% @people.each do |person| %>
       <option value="<%= person['id'] %>"
-        <% if person['id'] == @task['person'] %>
+        <% if person.id == @task.person_id %>
           selected = "selected"
           <% end %>>
-        <%= person["name"] %>
+        <%= person.name %>
       </option>
     <% end %>
   </select><br><br>
