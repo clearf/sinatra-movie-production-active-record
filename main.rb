@@ -157,27 +157,23 @@ get '/todos/:id' do
 end
 
 # This should edit a task
-get '/tasks/:id/edit' do
+get '/todos/:id/edit' do
   id = params[:id]
-  sql_input = "SELECT * FROM tasks WHERE id = #{id}"
-  @task = run_sql(sql_input).first
-  second_sql_input = "SELECT id, person_name FROM people"
-  @people = run_sql(second_sql_input)
-  third_sql_input = "SELECT id, movie_name FROM movies"
-  @movies = run_sql(third_sql_input)
+  @people = Person.all
+  @movies = Movie.all
   erb :edit_task
 end
 
 # This should send a post request to the url
-post '/tasks/:id/edit' do
-  id = params[:id]
-  task_name = params[:task_name]
-  description = params[:description]
-  person_id = params[:person_id]
-  movie_id = params[:movie_id]
-  sql_input = "UPDATE tasks SET (task_name, description, person_id, movie_id) = ('#{task_name}', '#{description}', #{person_id}, #{movie_id}) WHERE id = #{id}"
-  run_sql(sql_input)
-  redirect to('/tasks')
+post '/todos/:id/edit' do
+  todo = Todo.find(params[:id])
+  todo.name = params[:name]
+  todo.description = params[:description]
+  todo.due_date = params[:due_date]
+  todo.person_id = params[:person_id]
+  todo.movie_id = params[:movie_id]
+  todo.save
+  redirect to "/todos/#{todo.id}"
 end
 
 # This should delete a task
