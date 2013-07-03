@@ -102,10 +102,7 @@ end
 # This should show details of a single person
 get '/people/:id' do
   id = params[:id]
-  sql_input = "SELECT * FROM people WHERE id = #{id}"
-  @person = run_sql(sql_input).first
-  second_sql_input = "SELECT * FROM movies WHERE id = #{@person['movie_id']}"
-  @movie = run_sql(second_sql_input).first
+  @person = Person.find(id)
   erb :person
 end
 
