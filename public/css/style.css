@@ -1,0 +1,17 @@
+body
+
+
+
+nav {
+  text-decoration: none;
+  color: blue;
+  background-color: lightblue;
+}
+
+h1 {
+  font-family: sans-serif;
+  font-size: 100px;
+  color: #01C2E6;
+  margin: 20px;
+}
+

@@ -1,0 +1,22 @@
+<h1>Manage Your Movie Production Here</h1>
+<p>Here you can see a summary of your movies, tasks and slaves. Click the button to go see more details under each category.</p>
+
+<br/>
+<h2>Your Movie Produciton Summary</h2>
+  <ul>
+    <li>You currently have <%= @got_movies.count %> movies in production. <a href='/movies'><button>View All Movies</button></a></li>
+  </ul>
+
+<br/>
+<h2>Your Tasks Summary</h2>
+  <ul>
+    <li>You currently have <%= @got_todos.count %> tasks outstanding. <a href='/todos'><button>View All Tasks</button></a></li>
+  </ul>
+
+<br/>
+<h2>Your Staff Summary</h2>
+  <ul>
+    <li>You currently have <%= @got_people.count %> slaves working for you. <a href='/people'><button>View All Staff</button></a></li>
+  </ul>
+
+
