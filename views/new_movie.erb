@@ -1,0 +1,14 @@
+<h1>Add a new movie</h1>
+<form action = "/movies/new" method = "post">
+  Name:<br /> <input type="text" name="name" /><br />
+  Release Date:<br /> <input type="text" name="release_date" /><br />
+  Director:<br />
+  <select name="person_id">
+    <% @people.each do |person| %>
+         <option value="<%= person['id'] %>">
+           <%= person['name'] %>
+         </option>
+    <% end %>
+  </select>         <br />
+  <button>Add New Movie</button>
+</form>

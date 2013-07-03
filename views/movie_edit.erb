@@ -1,0 +1,15 @@
+<form action = "/movies/<%= @movie['id'] %>/edit" method = "post">
+    Name:<br /><input type="text" name="name" value= "<%= @movie['name'] %>"  /><br />
+    Release Date:<br /><input type="text" name="release_date" value= "<%= @movie['release_date'] %>"  /><br />
+    Director:       <br />
+  <select name="person_id">
+    <% @people.each do |person| %>
+        <option value="<%= person['id'] %>"
+                <% if person['id'] == @movie['person_id'] %>
+                selected=""
+                <% end %> >
+        <%= person['name'] %>
+    <% end %>
+  </select>       <br />
+    <button>Edit This Movie</button>
+</form>
