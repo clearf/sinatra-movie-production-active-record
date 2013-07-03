@@ -35,7 +35,6 @@ end
 # individual movie page
 get '/movies/:id' do
   @movie = Movie.find(params[:id])
-  # sql_tasks = "select * from tasks where movie = #{id}"
   @tasks = Task.find_all_by_movie_id(params[:id])
   erb :movie
 end
@@ -71,7 +70,6 @@ end
 # page for deleting a specific movie
 get '/movies/:id/delete' do
   @movie = Movie.find(params[:id])
-  # sql_tasks = "select * from tasks where movie = #{@id}"
   @tasks = Task.find_all_by_movie_id(params[:id])
   erb :delete_movie
 end
@@ -139,4 +137,33 @@ post '/people/:id/delete' do
   end
   Person.find(params[:id]).destroy
   redirect to "/people"
+end
+
+# page with all tasks
+get '/tasks' do
+  @movies = Movie.all
+  @tasks = Task.all
+  erb :todos
+end
+
+# individual task page
+get '/tasks/:id' do
+  id = params[:id]
+  @task = Task.find(params[:id])
+  @person = Person.find(@task.person_id)
+  @movie = Movie.find(@task.movie_id)
+  erb :todo
+end
+
+# page for adding a new task to the database
+get '/add_task' do
+  @movies = Movie.all
+  @people = Person.all
+  erb :add_task
+end
+
+# adds a new task to the database once form is filled out
+post '/add_task' do
+  task = Task.create(params)
+  redirect to '/tasks'
 end

@@ -4,11 +4,11 @@
 each list item includes a link to that task's page -->
 
 <% @movies.each do |movie| %>
-  <h3>Tasks for <%= movie['name'] %></h3>
+  <h3>Tasks for <%= movie.name %></h3>
   <ul>
     <% @tasks.each do |task| %>
-      <% if task['movie'] == movie['id'] %>
-        <li><a href="/tasks/<%= task['id'] %>"><%= task['name'] %></a></li>
+      <% if task.movie_id == movie.id %>
+        <li><a href="/tasks/<%= task.id %>"><%= task.name %></a></li>
       <% end %>
     <% end %>
   </ul>
