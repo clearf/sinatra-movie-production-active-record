@@ -25,7 +25,7 @@ class Todo < ActiveRecord::Base
   belongs_to :movies
 end
 
-binding.pry
+# binding.pry
 
 get '/' do
   erb :index
@@ -175,6 +175,7 @@ end
 # This should edit a task
 get '/todos/:id/edit' do
   id = params[:id]
+  @todo = Todo.find(id)
   @people = Person.all
   @movies = Movie.all
   erb :edit_task
