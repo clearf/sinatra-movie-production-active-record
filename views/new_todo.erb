@@ -1,0 +1,29 @@
+<h1>Add a New Task</h1>
+<p>Enter the information of your new task below:</p>
+
+<form action='/todos/new' method='post'>
+  <input type="text" name="todo" placeholder="Enter to-do here" size="30px"><br/>
+  <input type="text" name="note" placeholder="Enter description here" size="30px"><br/>
+
+  Who would you like to assign this task to?
+  <select name="person_id">
+    <% @got_people.each do |person| %>
+      <option value="<%= person["id"] %>">
+        <%= person["name"] %>
+      </option>
+    <% end %>
+  </select><br>
+
+  Which movie is this for?
+  <select name="movie_id">
+    <% @got_movies.each do |movie| %>
+      <option value="<%= movie["id"] %>">
+        <%= movie["title"] %>
+      </option>
+    <% end %>
+  </select><br>
+  <br>
+  <button>Submit</button>
+
+</form>
+
