@@ -31,13 +31,6 @@ label {
 	color:black;
 }
 
-#logo {
-	margin: 20px 10px 0 -20px;
-	height: 40px;
-	width: 40px;
-	float: left;
-}
-
 .menuBar {
 	height: 60px;
 	background: rgba(216, 216, 216, .3);
@@ -47,6 +40,7 @@ label {
 }
 
 .menuBar h1 {
+	margin-left: -20px;
 	margin-right: 20px;
 	float: left;
 }
@@ -84,16 +78,13 @@ label {
 	transition: all .5s ease-in-out;
 }
 
-.addItem:hover, .listbutton:hover{
-	background: rgba(216,216,216, 0.5);
-	border:1px solid rgba(0,0,0, .3);
-}
 
 .listButton {
 	background: rgba(216, 216, 216, .3);
 	margin: 0 10px 20px 10px;
 	margin: auto;
-	width: 150px;
+	width: 200px;
+	height: 19px;
 	padding: 2px;
 	text-align: center;
 	overflow: hidden;
@@ -101,3 +92,24 @@ label {
 	transition: all .5s ease-in-out;
 	position: relative;
 }
+
+.addItem:hover, .listbutton:hover{
+	background: rgba(216,216,216, 0.5);
+	border:1px solid rgba(0,0,0, .3);
+}
+
+button {
+	height: 30px;
+	width: 90px;
+	color: color: white;
+	transition: color 1s ease-in-out;
+}
+
+button:hover {
+	color: #ff5900;
+}
+
+option {
+	height: 25px;
+}
+

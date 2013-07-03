@@ -1,7 +1,5 @@
 <h1> People: </h1>
-<ul>
-	<%@people.each do |person|%>
-		<a href ='/people/<%=person["id"]%>'><%=person["name"]%></a><br>
-	<%end%>
-</ul>
-<a href = 'people/new'>New Person</a><br>
+<%@people.each do |person|%>
+	<div class = "listButton"><a href ='/people/<%=person["id"]%>'><%=person["name"]%></a></div><br>
+<%end%>
+<div class = "addItem" style = "width: 250px"><h3><a href = 'people/new'>New Person</a></h3></div><br>

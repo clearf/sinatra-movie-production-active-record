@@ -1,7 +1,5 @@
 <h1> Movies: </h1>
-<ul>
-	<%@movies.each do |movie|%>
-		<a href = '/movies/<%=movie["id"]%>'><%=movie["title"]%> </a><br>
-	<%end%>
-</ul>
-<a href = 'movies/new'>New Movie</a><br>
+<%@movies.each do |movie|%>
+	<div class = "listButton"><a href = '/movies/<%=movie["id"]%>'><%=movie["title"]%></a></div><br>
+<%end%>
+<div class = "addItem" style = "width: 250px"><h3><a href = 'movies/new'>New Movie</a></h3></div><br>

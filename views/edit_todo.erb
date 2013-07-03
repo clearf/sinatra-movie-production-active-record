@@ -1,15 +1,15 @@
 <form action = "/todos/<%=@todo['id']%>" method = "post" class = "pure-form pure-form-stacked">
-	<label>Task</label>
-	<input type = "text" name = "task" value = "<%=@todo["task"]%>">
-	<label>Details</label>
-	<input type = "text" name = "details" value = "<%=@todo["details"]%>">
-	<label>Due</label>
-	<input type = "date" name = "due" value = "<%=@todo["due"]%>">
-	<label for="urgent">
+	<label>Task</label><br>
+	<input type = "text" name = "task" value = "<%=@todo["task"]%>"><br>
+	<label>Details</label><br>
+	<input type = "text" name = "details" value = "<%=@todo["details"]%>"><br>
+	<label>Due</label><br>
+	<input type = "date" name = "due" value = "<%=@todo["due"]%>"><br>
+	<label for="urgent"><br>
 		Urgent: <input type = "radio" name = "urgent" value = "true" checked> 
 		Not Urgent: <input type = "radio" name = "urgent" value = "false" >
 	</label><br>
-	<label> Assign Task to:</label>
+	<br><label> Assign Task to:</label><br>
 	<select name = "person_id">
 		<%@people.each do |person|%>
 			<option value = "<%=person["id"]%>" selected = "<%=@current_person['name']%>">
@@ -17,13 +17,13 @@
 			</option>
 		<%end%>
 	</select><br>
-	<label> For Production on:</label>
+	<label> For Production on:</label><br>
 	<select name = "movie_id">
 		<%@movies.each do |movie|%>
 			<option value = "<%=movie["id"]%>" selected = "<%=@current_person['name']%>">
 				<%=movie["title"] %>
 			</option>
 		<%end%>
-	</select><br>
+	</select><br><br>
 	<button> Save Edits </button>
 </form>

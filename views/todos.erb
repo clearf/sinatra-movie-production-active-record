@@ -1,5 +1,5 @@
 <h1> Tasks </h1>
 	<%@todos.each do |todo|%>
-		<div class = "listButton"><a href = '/todos/<%=todo["id"]%>'><%=todo["task"]%> </a></div><br>
+		<div class = "listButton"><a href = '/todos/<%=todo["id"]%>'><%=todo["task"]%>: <%=todo["due"]%> </a></div><br>
 	<%end%>
-<div class = "listButton" style = "width: 250px" ><h3><a href = 'todos/new'>New Todo</a></h3></div><br>
+<div class = "addItem" style = "width: 250px" ><h3><a href = 'todos/new'>New Todo</a></h3></div><br>
