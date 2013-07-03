@@ -199,7 +199,3 @@ post '/todos/:id/delete' do
   Todo.find(id).destroy
   redirect to('/todos')
 end
-
-
-
-
