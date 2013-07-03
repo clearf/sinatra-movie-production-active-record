@@ -2,7 +2,6 @@ body{
   background: #ECF0F1;
 }
 
-
 h1{
   background-color: #BDC3C7;
   width: 500px;
@@ -12,46 +11,50 @@ h1{
   text-align: center;
 }
 
+h2 {
+  background: #1ABC9C;
+  width: 200px;
+  border-radius: 6px;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: white;
+
+}
+
+p {
+  background: #2C3E50;
+  width: 100px;
+  border-radius: 6px;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: white;
+}
+
+a {
+  color: white;
+}
+
 .home_buttons {
   text-align: center;
   padding: 20px;
   margin: auto;
 }
 
-.buttons {
-background-color:  #1abc9c;
-  line-height: 20px;
-  width: 100px;
-  padding: 12px 18px 13px 18px;
-  font-family: sans-serif;
-  border-radius: 6px;
-  margin: 0px 10px 0px 10px;
-  text-decoration: none;
-  text-align: center;
-  display: inline-block;
-  color: white;
-}
 
 .list_item .people_links {
   padding: 2px;
   margin-top: 10px;
 }
 
-.add_a_new {
-background: #3498DB;
-border-radius: 4px;
-color: white;
-padding: 5px;
-}
-
 .list_item {
 background: #3498DB;
 border-radius: 4px;
-color: #E74C3C;
+color: white;
 padding: 5px;
 width: 70px;
 margin-top: 05px;
 margin-left: 10px;
 text-align: center;
-
 }
