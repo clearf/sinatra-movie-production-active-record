@@ -12,9 +12,9 @@
 <ul>
   <li>Title: <input type="text" name="title"></li>
   <li>Director:
-    <select name="director_id">
+    <select name="people">
       <% @people.each do |person| %>
-        <option name="director_id" value="<%= person['id'] %>">
+        <option value="<%= person['id'] %>">
         <%= person['name'] %>
       <% end %>
     </select></li>

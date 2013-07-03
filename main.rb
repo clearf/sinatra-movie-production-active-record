@@ -40,66 +40,47 @@ end
 ##################################
 
 get '/tasks/:id' do
-  id = params[:id]
+  @task = Task.find(params[:id])
+  @person = @task.person
 
-  @task = Task.find(id)
-  binding.pry
-  @person = Person.find(@task.people_id)
-
-  @movie = Movie.find(@task.movies_id)
+  @movie = @task.movie
 
   erb :task
 end
 
 post '/new_task' do
-  task = params[:task]
-  description = params[:description]
-  person_id = params[:person_id]
-  movie_id = params[:movie_id]
-
-  sql = "INSERT INTO tasks (task, description, person_id, movie_id) VALUES ('#{task}', '#{description}', #{person_id}, #{movie_id})"
-  run_sql(sql)
+  Task.create(params)
 
   redirect to('/')
 end
 
 get '/edit_task/:id' do
-  id = params[:id]
-
-  sql = "SELECT * FROM tasks WHERE id = #{id}"
-  @task = run_sql(sql).first
-
-  sql = "SELECT id, name FROM people"
-  @people = run_sql(sql)
-
-  sql = "SELECT id, title FROM movies"
-  @movies = run_sql(sql)
+  @task = Task.find(params[:id])
+  @people = Person.all
+  @movies = Movie.all
 
   erb :edit_task
 end
 
 post '/edit_task/:id' do
-  id = params['id']
-  task = params['task']
-  description = params['description']
-  person_id = params['person_id']
-  movie_id = params['movie_id']
+  @task = Task.find(params[:id])
+  @task.task = params['task']
+  @task.description = params['description']
+  @task.person_id = params['person_id']
+  @task.movie_id = params['movie_id']
 
-  completed = false
+  @task.completed = false
   if params['completed'].chomp == 'y'
-    completed = true
+    @task.completed = true
   end
 
-  sql = "UPDATE tasks SET (task, description, person_id, movie_id, completed) = ('#{task}', '#{description}', #{person_id}, #{movie_id}, #{completed}) WHERE id = #{id}"
-  run_sql(sql)
+  @task.save
 
   redirect to('/')
 end
 
 post '/delete_task/:id' do
-  id = params[:id]
-  sql = "DELETE FROM tasks WHERE id = #{id}"
-  run_sql(sql)
+  Task.find(params[:id]).destroy
 
   redirect to('/')
 end
@@ -117,44 +98,44 @@ get '/movies' do
 end
 
 post '/new_movie' do
-  Movie.create(params)
-
+  # binding.pry
+  @movie = Movie.create(title: params[:title], year: params[:year], image: params[:image])
+  @movie.people << Person.find(params[:people])
+  @movie.save
   redirect to('/movies')
 end
 
 get '/movies/:id' do
-  id = params[:id]
-
-  sql = "SELECT * FROM movies WHERE id = #{id}"
-  @movie = run_sql(sql).first
-
-  sql = "SELECT name FROM people WHERE id = #{@movie['director_id']}"
-  @director = run_sql(sql).first
+  @movie = Movie.find(params[:id])
+  @people = @movie.people.first
+  @tasks = @movie.tasks
 
   erb :movie
 end
 
 get '/edit_movie/:id' do
-  id = params[:id]
+  @movie = Movie.find(params[:id])
 
-  sql = "SELECT * FROM movies WHERE id = #{id}"
-  @movie = run_sql(sql).first
-
-  sql = "SELECT id, name FROM people"
-  @people = run_sql(sql)
+  @people = Person.all
 
   erb :edit_movie
 end
 
 post '/edit_movie/:id' do
-  id = params[:id]
-  title = params[:title]
-  director_id = params['director_id']
-  year = params['year']
-  image = params['image']
 
-  sql = "UPDATE movies SET (title, director_id, year, image) = ('#{title}', '#{director_id}', '#{year}', '#{image}') WHERE id = #{id}"
-  run_sql(sql)
+  @movie = Movie.find(params[:id])
+  @movie.title = params[:title]
+  @movie.people << Person.find(params['people_id'])
+  @movie.year = params['year']
+  @movie.image = params['image']
+
+  @movie.save
+
+  redirect to('/movies')
+end
+
+post '/delete_movie/:id' do
+  Movie.find(params[:id]).destroy
 
   redirect to('/movies')
 end
@@ -170,47 +151,39 @@ get '/people' do
 end
 
 get '/people/:id' do
-  id = params[:id]
-
-  sql = "SELECT * FROM people WHERE id = #{id}"
-  @person = run_sql(sql).first
+  @person = Person.find(params[:id])
 
   erb :person
 end
 
 post '/new_person' do
-  name = params[:name]
-  title = params[:title]
-  phone = params[:phone]
-
-  sql = "INSERT INTO people (name, title, phone) VALUES ('#{name}', '#{title}', '#{phone}')"
-  run_sql(sql)
+  Person.create(params)
 
   redirect to('/people')
 end
 
 get '/edit_person/:id' do
-  id = params[:id]
-
-  sql = "SELECT * FROM people WHERE id = #{id}"
-  @person = run_sql(sql).first
+  @person = Person.find(params[:id])
 
   erb :edit_person
 end
 
 post '/edit_person/:id' do
-  id = params['id']
-  name = params['name']
-  title = params['title']
-  phone = params['phone']
+  @person = Person.find(params[:id])
+  @person.name = params['name']
+  @person.title = params['title']
+  @person.phone = params['phone']
 
-  sql = "UPDATE people SET (name, title, phone) = ('#{name}', '#{title}', '#{phone}') WHERE id = #{id}"
-  run_sql(sql)
+  @person.save
 
   redirect to('/people')
 end
 
+post '/delete_person/:id' do
+  Person.find(params[:id]).destroy
 
+  redirect to('/people')
+end
 
 
 

@@ -8,9 +8,9 @@
     </li>
 
     <li>Director:
-      <select name="director_id">
+      <select name="people_id">
         <% @people.each do |person| %>
-          <option name="director_id" value="<%= person['id'] %>">
+          <option value="<%= person['id'] %>">
           <%= person['name'] %>
         <% end %>
       </select>

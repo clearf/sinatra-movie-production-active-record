@@ -1,19 +1,19 @@
-<h4><%= @task['task'] %></h4>
-<p><%= @task['description'] %></p>
-<p>Assigned to: <%= @person['name'] %></p>
-<p>For film: <%= @movie['title'] %></p>
+<h4><%= @task.task %></h4>
+<p><%= @task.description %></p>
+<p>Assigned to: <%= @person.name %></p>
+<p>For film: <%= @movie.title %></p>
 <p>Completed?
-  <% if @task['completed'] == true %>
+  <% if @task.completed == true %>
     <span class="completed">y</span>
   <% else %>
     <span class="completed">n</span>
   <% end %>
 </p>
 <div class="task-buttons">
-  <form action='/edit_task/<%= @task['id'] %>' method='get'>
+  <form action='/edit_task/<%= @task.id %>' method='get'>
     <button>Edit task</button>
   </form>
-  <form action='/delete_task/<%= @task['id'] %>' method='post'>
+  <form action='/delete_task/<%= @task.id %>' method='post'>
     <button>Delete task</button>
   </form>
 </div>

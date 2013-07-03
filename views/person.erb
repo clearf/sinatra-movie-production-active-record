@@ -2,5 +2,8 @@
 <p><%= @person['title'] %></p>
 <p><%= @person['phone'] %></p>
 <p><a href="/edit_person/<%= @person['id'] %>">Edit contact</a></p>
+<form action='/delete_person/<%= @person['id'] %>' method='post'>
+  <button>Delete contact</button>
+</form>
 
 <p><a href="/people">Back to contacts page</a></p>

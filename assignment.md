@@ -16,7 +16,7 @@
 * A user should be able to manage ToDo tasks
   * In addition to name and descriptions, tasks should have:
     * a contact person to whom they can be assigned (person has many tasks)
-    * a movie to which they are related
+    * a movie to which they are related (movie has many tasks)
 * A user shoudl be able to see task details "at a glance" on the task list page.
 * A user should be able to manage movies:
   * A release date

@@ -1,7 +1,10 @@
 <h2><%= @movie['title'] %></h2>
-<p>Director: <%= @director['name'] %></p>
+<p>Director: <%= @people['name'] %></p>
 <p>Year of release: <%= @movie['year'] %></p>
 <img src="<%= @movie['image'] %>">
 <p><a href="/edit_movie/<%= @movie['id'] %>">Edit film</a></p>
+<form action='/delete_movie/<%= @movie['id'] %>' method='post'>
+  <button>Delete film</button>
+</form>
 
 <p><a href="/movies">Back to films page</a></p>
