@@ -3,5 +3,12 @@
   <input type="text" name="name" autofocus="true"><br/>
   <label for="release_date">Enter a release date</label><br/>
   <input type="text" name="release_date"><br/>
+  <select name="people_id">
+    <% @people.each do |person| %>
+      <option value="<%= person.id %>">
+        <%= house.name %>
+      </option>
+    <% end %>
+  </select><br>
   <button>Add movie</button>
 </form>

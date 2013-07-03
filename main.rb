@@ -39,6 +39,7 @@ end
 
 # This should add a new movie
 get '/movies/new' do
+  @people = Person.all
   erb :new_movie
 end
 
@@ -51,8 +52,7 @@ end
 # This should show details of a single movie
 get '/movies/:id' do
   id = params[:id]
-  sql_input = "SELECT * FROM movies WHERE id = #{id}"
-  @movie = run_sql(sql_input).first
+  @movie = Movie.find(id)
   erb :movie
 end
 
