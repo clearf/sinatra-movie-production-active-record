@@ -82,8 +82,7 @@ end
 
 # This should list people
 get '/people' do
-  sql_input = "SELECT * FROM people"
-  @people = run_sql(sql_input)
+  @people = Person.all
   erb :people
 end
 
