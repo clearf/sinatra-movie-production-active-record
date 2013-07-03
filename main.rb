@@ -67,6 +67,7 @@ post '/todos/:id' do
 	todo.urgent = params[:urgent]
 	todo.person_id = params[:person_id]
 	todo.movie_id = params[:movie_id]
+	todo.save
 	redirect to('/todos')
 end
 
@@ -166,10 +167,10 @@ get '/people/:id/edit' do
 end
 
 post '/people/:id/edit' do
-	@person = Person.find(params[:id])
-	@person.name = params[:name]
-	@person.email = params[:email]
-	@person.save
+	person = Person.find(params[:id])
+	person.name = params[:name]
+	person.email = params[:email]
+	person.save
 	redirect to('/people')
 end
 
