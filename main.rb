@@ -143,12 +143,7 @@ end
 
 # This should send a post request to the url
 post '/todos/new' do
-  task_name = params[:task_name]
-  description = params[:description]
-  person_id = params[:person_id]
-  movie_id = params[:movie_id]
-  sql_input = "INSERT INTO tasks (task_name, description, person_id, movie_id) VALUES ('#{task_name}', '#{description}', #{person_id}, #{movie_id})"
-  run_sql(sql_input)
+  todo = Todo.create(params)
   redirect to "/todos/#{todo.id}"
 end
 
