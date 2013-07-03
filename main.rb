@@ -25,7 +25,7 @@ class Todo < ActiveRecord::Base
   belongs_to :movies
 end
 
-binding.pry
+# binding.pry
 
 get '/' do
   erb :index

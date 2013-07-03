@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20130702233325) do
 
   create_table "movies", force: true do |t|
     t.string   "name"
-    t.string   "release_date"
+    t.date     "release_date"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "person_id"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20130702233325) do
   create_table "todos", force: true do |t|
     t.string   "name"
     t.string   "description"
-    t.string   "due_date"
+    t.date     "due_date"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "movie_id"
