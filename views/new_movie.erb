@@ -1,0 +1,17 @@
+<div>
+<form action="/new_movie" method="post">
+  Title: <br/><input type="text" name="title"></input><br/>
+  Release Date: <input type="text" name="release_date"></input><br/>
+  Director: <br/><select name="person_id">
+    <% @people.each do |person| %>
+      <option value="<%= person['id'] %>">
+          <%= person['name'] %>
+      </option>
+    <% end %>
+    </select><br/><br/>
+  <button>Create New Movie</button>
+</form>
+<br/>
+<a href="/movies">Back to Movies</a>
+</div>
+

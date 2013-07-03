@@ -1,0 +1,24 @@
+<div>
+<form action="/new_todo" method="post">
+  Name: <input type="text" name="name"></input><br/>
+  Description: <input type="text" name="description"></input><br/>
+  Person:<br/><select name="person_id">
+    <% @people.each do |person| %>
+      <option value="<%= person['id'] %>">
+        <%= person['name'] %>
+      </option>
+      <% end %>
+    </select><br/>
+  Movie: <br/><select name="movie_id">
+    <% @movies.each do |movie| %>
+      <option value="<%= movie['id'] %>">
+        <%= movie['title'] %>
+      </option>
+      <% end %>
+    </select>
+  <br/><br/>
+  <button>Create New Task</button>
+</form>
+<br/>
+<a href="/todos">Back to Tasks</a>
+</div>

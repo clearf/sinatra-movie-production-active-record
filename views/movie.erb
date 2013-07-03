@@ -1,0 +1,29 @@
+<div>
+
+  <form action=/edit_movie/<%= @movie.id %> method="post">
+    Title: <br/><input type="text" name="title" value="<%= @movie.title %>"><br/>
+    Release Date: <input type="text" name="release_date" value="<%= @movie.release_date %>"><br/>
+    Director: <br/><select name="person_id">
+    <% @people.each do |person| %>
+      <% if person['id'] == @movie.person_id %>
+        <option value="<%= person['id'] %>" selected>
+          <%= person['name'] %>
+        </option>
+      <% else %>
+      <option value="<%= person['id'] %>">
+          <%= person['name'] %>
+      </option>
+      <% end %>
+    <% end %>
+    </select>
+    <br/><br/>
+    <button>Update</button>
+  </form><br/><br/>
+  <form action="/delete/movies/<%= @movie.id %>" method="post">
+    <button>Delete</button>
+  </form>
+
+<br/>
+<br/>
+<a href="/movies">Back to Movies</a>
+</div>
