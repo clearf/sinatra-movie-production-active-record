@@ -1,0 +1,10 @@
+<h1>This is your personnel</h1>
+<button><a href="/people/new">Add new personnel here<a/></button>
+<div>
+<br>
+<% @people.each do |people| %>
+<%= people['name'] %>
+<%= people['movie']%>
+<%= people['task']%>
+</div>
+<% end %>
