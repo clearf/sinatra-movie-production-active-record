@@ -143,7 +143,11 @@ post '/new_todo' do
   description = params[:description]
   person_id = params[:person_id]
   movie_id = params[:movie_id]
-  Task.create(params)
+  task = Task.create(params)
+  @person = Person.find(person_id)
+  @person.task_id = task.id
+  @person.movie_id = movie_id
+  @person.save
   redirect to('/todos')
 end
 
