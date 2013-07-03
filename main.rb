@@ -10,6 +10,17 @@ set :database, {
   host: 'localhost'
 }
 
+# class Movie < ActiveRecord::Base
+#   has_many :people
+# end
+
+# class Person < ActiveRecord::Base
+# end
+
+# class Todo < ActiveRecord::Base
+#   has many
+# end
+
 get '/' do
   erb :index
 end

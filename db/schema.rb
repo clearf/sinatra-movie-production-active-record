@@ -20,24 +20,23 @@ ActiveRecord::Schema.define(version: 20130702233325) do
     t.date     "release_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "todo_id"
     t.integer  "person_id"
   end
 
   create_table "people", force: true do |t|
     t.string   "name"
-    t.boolean  "director",   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "todo_id"
-    t.integer  "movie_id"
   end
 
   create_table "todos", force: true do |t|
     t.string   "name"
     t.string   "description"
+    t.date     "due_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "movie_id"
+    t.integer  "person_id"
   end
 
 end

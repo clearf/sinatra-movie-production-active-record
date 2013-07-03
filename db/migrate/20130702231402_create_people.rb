@@ -2,7 +2,6 @@ class CreatePeople < ActiveRecord::Migration
   def up
     create_table :people do |t|
       t.string :name
-      t.boolean :director, default: false
       t.timestamps
     end
   end
