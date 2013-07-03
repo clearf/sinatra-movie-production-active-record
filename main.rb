@@ -10,16 +10,22 @@ set :database, {
   host: 'localhost'
 }
 
-# class Movie < ActiveRecord::Base
-#   has_many :people
-# end
+class Person < ActiveRecord::Base
+  has_many :movies
+  has_many :todos
+end
 
-# class Person < ActiveRecord::Base
-# end
+class Movie < ActiveRecord::Base
+  belongs_to :people
+  has_many :todos
+end
 
-# class Todo < ActiveRecord::Base
-#   has many
-# end
+class Todo < ActiveRecord::Base
+  belongs_to :people
+  belongs_to :movies
+end
+
+binding.pry
 
 get '/' do
   erb :index
