@@ -177,11 +177,10 @@ post '/todos/:id/edit' do
 end
 
 # This should delete a task
-post '/tasks/:id/delete' do
+post '/todos/:id/delete' do
   id = params[:id]
-  sql_input = "DELETE FROM tasks WHERE id = #{id}"
-  run_sql(sql_input)
-  redirect to('/tasks')
+  Todo.find(id).destroy
+  redirect to('/todos')
 end
 
 
