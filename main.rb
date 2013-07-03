@@ -148,14 +148,11 @@ post '/todos/new' do
 end
 
 # This should list a single task
-get '/tasks/:id' do
+get '/todos/:id' do
   id = params[:id]
-  sql_input = "SELECT * FROM tasks WHERE id = #{id}"
-  @task = run_sql(sql_input).first
-  second_sql_input = "SELECT * FROM movies WHERE id = #{@task['movie_id']}"
-  @movie = run_sql(second_sql_input).first
-  third_sql_input = "SELECT * FROM people WHERE id = #{@task['person_id']}"
-  @person = run_sql(third_sql_input).first
+  @todo = Todo.find(id)
+  @person = Person.find(@todo.person_id)
+  @movie = Movie.find(@todo.movie_id)
   erb :todo
 end
 

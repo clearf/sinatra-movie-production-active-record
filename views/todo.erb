@@ -1,8 +1,9 @@
-<h2><%= @task['task_name'] %></h2>
-<p>Description: <%= @task['description'] %></p>
-<p>Movie: <%= @movie['movie_name'] %></p>
-<p>Contact: <%= @person['person_name'] %></p>
-
-<form action="/tasks/<%= @task['id'] %>/delete" method="post">
+<h2><%= @todo.name %></h2>
+<p>Description: <%= @todo.description %></p>
+<p>Due date: <%= @todo.due_date %></p>
+<p>Movie: <%= @movie.name %></p>
+<p>Contact: <%= @person.name %></p>
+<a href="/todos/<%= @todo.id %>/edit">Edit</a>
+<form action="/todos/<%= @todo.id %>/delete" method="post">
   <button>Delete</button>
 </form>
