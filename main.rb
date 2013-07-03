@@ -50,3 +50,38 @@ post '/add_movie' do
   movie = Movie.create(params)
   redirect to '/movies'
 end
+
+# page for editing a specific movie
+get '/movies/:id/edit' do
+  @id = params[:id]
+  @movie = Movie.find(params[:id])
+  erb :edit_movie
+end
+
+# edits specific movie once form is filled out
+post '/movies/:id/edit' do
+  id = params[:id]
+  movie = Movie.find(params[:id])
+  movie.name = params[:name]
+  movie.director = params[:director]
+  movie.release_date = params[:release_date]
+  movie.save
+  redirect to "/movies/#{id}"
+end
+
+# page for deleting a specific movie
+get '/movies/:id/delete' do
+  @movie = Movie.find(params[:id])
+  # sql_tasks = "select * from tasks where movie = #{@id}"
+  @tasks = Task.find_all_by_movie_id(params[:id])
+  erb :delete_movie
+end
+
+# deletes specific movie once form is filled out
+post '/movies/:id/delete' do
+  Task.find_all_by_movie_id(params[:id]).each do |task|
+    task.destroy
+  end
+  Movie.find(params[:id]).destroy
+  redirect to "/movies"
+end
