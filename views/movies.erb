@@ -1,0 +1,9 @@
+<h1>List of Movies:</h1>
+<% @movies.each do |movie| %>
+<p class="list_item"><a  href="/movies/<%= movie['id'] %>"><%= movie['name'].capitalize %></a></p>
+<% end %>
+
+<p><a class="add_a_new" href="/movies/new">Add A New Movie</a></p>
+
+<p><a class="buttons" href="/people">People</a></p>
+<p><a class="buttons" href="/tasks">Tasks</a></p>

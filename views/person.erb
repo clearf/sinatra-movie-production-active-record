@@ -1,0 +1,13 @@
+<h1>Name: <%= @person.name.capitalize %></h1>
+<h2>Tasks:</h2>
+  <% @person.tasks.each do |tasks| %>
+    <p><%= tasks.name %></p>
+    <% end %>
+<h2>Movies:</h2>
+ <% @person.movies.each do |movie| %>
+    <p><%= movie.name %></p>
+    <% end %>
+<form action="/people/<%= @person_details['id'] %>/delete" method="post">
+<button class="silver_button">DELETE CONTACT</button>
+<p><a href="/people/<%= @person_details['id']%>/edit">Edit Name</a></p>
+<p><a href="/people">People</a></p>

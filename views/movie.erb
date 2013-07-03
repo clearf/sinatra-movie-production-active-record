@@ -1,0 +1,15 @@
+<h1>Name: <%= @movie_details.name.capitalize %></h1>
+<h2>
+  Director:
+  <%= @director  %>
+</h2>
+<h2>Tasks:</h2>
+<% @movie_details.tasks.each do |task| %>
+<p><%= task.name %></p>
+<% end %>
+<form action="/movies/<%= @movie_details.id %>/delete" method="post">
+<button class="silver_button">DELETE MOVIE</button>
+</form>
+
+<p><a href="/movies/<%= @movie_details['id'] %>/edit">Edit</a></p>
+<p><a href="/movies">Movies</a></p>

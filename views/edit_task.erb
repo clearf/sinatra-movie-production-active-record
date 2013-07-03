@@ -1,0 +1,22 @@
+<h1>Edit Task</h1>
+<form action="/tasks/<%= @task_id %>/update" method="post">
+  <input type="text" value="<%= @task_details['name'] %>"name="name">
+  <input type="text" value="<%= @task_details['description'] %>" name="description">
+    <select name="movie_id">
+      <% @movie_details.each do |movie| %>
+      <option value="<%=movie['id'] %>" <%= "selected" if movie['id'] == @task_details['movie_id']  %>>
+        <%= movie['name'] %>
+        <% end %>
+      </option>
+    </select>
+    <select name="person_id">
+      <% @people.each do |person| %>
+      <option value="<%=person['id'] %>" <%= "selected" if person['id'] == @task_details['person_id'] %> >
+        <%= person['name'] %>
+        <% end %>
+      </option>
+    </select>
+  <button>Edit Task</button>
+</form>
+
+<p><a class="buttons" href="/tasks">Tasks</a></p>
