@@ -11,6 +11,7 @@ set :database, {
 }
 
 class Person < ActiveRecord::Base
+  belongs_to :movie
   has_many :tasks
 end
 
@@ -20,8 +21,8 @@ class Movie < ActiveRecord::Base
 end
 
 class Task < ActiveRecord::Base
-  belongs_to :people
-  belongs_to :movies
+  belongs_to :person
+  belongs_to :movie
 end
 
 get '/' do

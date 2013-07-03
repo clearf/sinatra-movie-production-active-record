@@ -2,7 +2,7 @@
   <form action=/edit_todo/<%= @task.id %> method="post">
     Task: <br/><input type="text" name="name" value="<%= @task.name %>"><br/>
     Description: <input type="text" name="description" value="<%= @task.description %>"><br/>
-    Movie: <br/><select name="movie">
+    Movie: <br/><select name="movie_id">
       <% @movies.each do |movie| %>
         <% if movie['id'] == @task.movie_id %>
           <option value="<%= movie['id'] %>" selected>
