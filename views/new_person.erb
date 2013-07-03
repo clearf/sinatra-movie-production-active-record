@@ -1,12 +1,5 @@
 <form action="/people/new" method="post" >
-  <input type="text" name="person_name">
-  <input type="text" name="director">
-  <select name="movie_id">
-    <% @movies.each do |movie| %>
-      <option value="<%= movie['id'] %>">
-        <%= movie['movie_name'] %>
-      </option>
-    <% end %>
-  </select>
-  <button>Add person</button>
+  <label for="name">Enter a name</label><br/>
+  <input type="text" name="name"><br/>
+  <button>Submit</button>
 </form>

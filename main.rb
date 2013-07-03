@@ -53,6 +53,7 @@ end
 get '/movies/:id' do
   id = params[:id]
   @movie = Movie.find(id)
+  @person = Person.find(@movie.person_id)
   erb :movie
 end
 
@@ -69,6 +70,7 @@ post '/movies/:id/edit' do
   movie = Movie.find(params[:id])
   movie.name = params[:name]
   movie.release_date = params[:release_date]
+  movie.person_id = params[:person_id]
   movie.save
   redirect to "/movies/#{movie.id}"
 end
@@ -86,25 +88,14 @@ get '/people' do
   erb :people
 end
 
-# This should add a new person. This also makes movie names available to assign a new person to.
+# This should add a new person.
 get '/people/new' do
-  sql_input = "SELECT id, movie_name FROM movies"
-  @movies = run_sql(sql_input)
   erb :new_person
 end
 
 # This should send a post request to the url
 post '/people/new' do
-  person_name = params[:person_name]
-  director = params[:director]
-  if director == "yes"
-    director = true
-  else
-    director = false
-  end
-  movie_id = params[:movie_id]
-  sql_input = "INSERT INTO people (person_name, director, movie_id) VALUES ('#{person_name}', #{director}, #{movie_id})"
-  run_sql(sql_input)
+  person = Person.create(params)
   redirect to('/people')
 end
 
