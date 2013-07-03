@@ -1,10 +1,9 @@
 <div>
-<% @person.each do |person| %>
-  <form action=/edit_person/<%= person['id'] %> method="post">
-    Name: <input type="text" name="name" value="<%= person['name'] %>"><br/>
-    Movie: <select name="movie">
+  <form action=/edit_person/<%= @person.id %> method="post">
+    Name: <input type="text" name="name" value="<%= @person.name %>"><br/>
+    Movie: <br/><select name="movie">
       <% @movies.each do |movie| %>
-        <% if movie['id'] == person['movie'] %>
+        <% if movie['id'] == @person.movie_id %>
           <option value="<%= movie['id'] %>" selected>
             <%= movie['title'] %>
           </option>
@@ -15,9 +14,10 @@
         <% end %>
       <% end %>
     </select>
+    <br/>
     Task: <br/><select name="task">
       <% @tasks.each do |task| %>
-        <% if task['id'] == person['task'] %>
+        <% if task['id'] == @person.task_id %>
           <option value="<%= task['id'] %>" selected>
             <%= task['name'] %>
           </option>
@@ -37,10 +37,10 @@
   </form>
   <br/>
   <br/>
-  <form action="/delete/people/<%= person['id'] %>" method="post">
+  <form action="/delete/people/<%= @person.id %>" method="post">
     <button>Delete</button>
   </form>
-<% end %>
+
 <br/>
 <br/>
 <a href="/people">Back to People</a>

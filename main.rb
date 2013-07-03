@@ -110,7 +110,10 @@ post '/edit_person/:id' do
   name = params[:name]
   movie = params[:movie]
   task = params[:task]
-  Person.update_all(params)
+  @person = Person.find(id)
+  @person.name = name
+  @person.movie_id = movie
+  @person.task_id = task
   redirect to('/people')
 end
 
