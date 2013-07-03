@@ -85,3 +85,27 @@ post '/movies/:id/delete' do
   Movie.find(params[:id]).destroy
   redirect to "/movies"
 end
+
+# page with list of people
+get '/people' do
+  @people = Person.all
+  erb :people
+end
+
+# individual person page
+get '/people/:id' do
+  @person = Person.find(params[:id])
+  @tasks = Task.find_all_by_person_id(params[:id])
+  erb :person
+end
+
+# page for adding a new person to the database
+get '/add_person' do
+  erb :add_person
+end
+
+# adds a new person to the database once form is filled out
+post '/add_person' do
+  person = Person.create(params)
+  redirect to '/people'
+end
