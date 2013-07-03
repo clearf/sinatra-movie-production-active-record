@@ -76,9 +76,17 @@ post '/movies/:id/edit' do
 end
 
 # This should delete a movie
+## test this
 post '/movies/:id/delete' do
   id = params[:id]
-  Movie.find(id).destroy
+  movie = Movie.find(id)
+  unless Todo.find_by(movie_id: movie.id).movie_id == nil
+    todo = Todo.find_by(movie_id: movie.id)
+    todo.movie_id = nil
+    todo.save
+  end
+  movie.destroy
+  # Movie.find(id).destroy
   redirect to('/movies')
 end
 
@@ -122,9 +130,17 @@ post '/people/:id/edit' do
 end
 
 # This should delete a person
+## test this
 post '/people/:id/delete' do
   id = params[:id]
-  Person.find(id).destroy
+  person = Person.find(id)
+  unless Movie.find_by(person_id: person.id).person_id == nil
+    movie = Movie.find_by(person_id: person.id)
+    movie.person_id = nil
+    movie.save
+  end
+  person.destroy
+  # Person.find(id).destroy
   redirect to('/people')
 end
 
