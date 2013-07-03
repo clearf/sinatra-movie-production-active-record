@@ -1,0 +1,31 @@
+<form action = "/tasks/<%= @task['id'] %>/edit" method = "post">
+  Task name: <br />
+  <input type="text" name="name" value= "<%= @task['name'] %>"  /><br />
+  Description:<br />
+  <input type="text" name="description" value= "<%= @task['description'] %>"  /><br />
+  Assign a person:<br />
+  <select name = "person_id">
+    <% @people.each do |person| %>
+        <option value="<%= person['id'] %>"
+          <% if person['id'] == @task['person_id'] %>
+            selected=""
+            <% end %>  >
+
+          <%= person['name'] %>
+        </option>
+    <% end %>
+  </select>      <br />
+  Assign a movie:<br />
+  <select name="movie_id">
+    <% @movies.each do |movie| %>
+        <option value="<%= movie['id'] %>"
+           <% if movie['id'] == @task['movie_id'] %>
+            selected=""
+            <% end %> >
+          <%= movie['name'] %>
+        </option>
+    <% end %>
+  </select>
+  <br />
+  <button>Edit This Task</button>
+</form>

@@ -1,0 +1,5 @@
+<form action = "/people/<%= @person['id'] %>/edit" method = "post">
+  <input type="text" name="name" value= "<%= @person['name'] %>" /><br />
+  <input type="text" name="role" value= "<%= @person['role'] %>"  /><br />
+  <button>Edit This Person</button>
+</form>

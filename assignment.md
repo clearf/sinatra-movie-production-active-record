@@ -3,7 +3,7 @@
 #### Objectives
 
 * Refine CRUD skills
-* Use ActiveRecord to integrate foreign keys to link different data.
+* Integrate the use of primary keys by tying together different data
 
 #### Story
 
@@ -36,8 +36,7 @@
 
 #### Task
 * Create a Sinatra application that fulfills the needs of the user story listed above
-* Use ActiveRecord to store information into a database. 
-  Do *not* use raw postrgres
+* The application should store information in a database
 * Create a few CSS rule, using element, class, and ID selectors
   * Focus on functionality, and then CSS. 
 * Comment your code carefully, noting which sinatra request fulfills each part of the story. 

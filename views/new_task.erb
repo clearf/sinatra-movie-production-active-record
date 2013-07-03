@@ -1,0 +1,27 @@
+<h1>Add a new task</h1>
+
+
+<form action = "/tasks/new" method = "post">
+  Task name: <br />
+  <input type="text" name="name" /><br />
+  Description:<br />
+  <input type="text" name="description" /><br />
+  Assign a person:<br />
+  <select name = "person_id">
+    <% @people.each do |person| %>
+        <option value="<%= person['id'] %>">
+          <%= person['name'] %>
+        </option>
+    <% end %>
+  </select>      <br />
+  Assign a movie:<br />
+  <select name="movie_id">
+    <% @movies.each do |movie| %>
+        <option value="<%= movie['id'] %>">
+          <%= movie['name'] %>
+        </option>
+    <% end %>
+  </select>
+<br />
+  <button>Add New Task</button>
+</form>
