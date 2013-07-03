@@ -6,7 +6,7 @@
 	<label for="person_id"> Director
 		<select name = "person_id">
 			<%@people.each do |person|%>
-				<option value = "<%=person["id"]%>" selected = "<%=@director['name']%>">
+				<option value = "<%=person["id"]%>" selected = "<%=@director['name'] if @director%>">
 					<%=person["name"] %>
 				</option>
 			<%end%>

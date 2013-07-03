@@ -1,5 +1,7 @@
 <h2> <%=@movie["title"]%></h2>
-<h2> <%=@director["name"]%></h2>
+<% if @director %>
+	<h2> <%=@director["name"]%></h2>
+<%end%>
 <p> <%=@movie["description"]%></p>
 <a href="/movies/<%=@movie['id']%>/edit">Edit Movie</a>
 <a href="/movies/<%=@movie['id']%>/delete"> Delete Movie</a>

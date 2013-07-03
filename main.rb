@@ -38,7 +38,7 @@ end
 
 # adds a new todo to the lists of tasks to be done
 post '/todos' do 
-	Task.create(paramsm)
+	Task.create(params)
 	redirect to('/todos')
 end
 
@@ -84,8 +84,7 @@ end
 
 # deletes a task
 get '/todos/:id/delete' do
-	sql = "DELETE FROM tasks WHERE id = #{params[:id]}"
-	run_sql(sql)
+	Task.find(params[:id]).destroy
 	redirect to('/todos')
 end
 
@@ -98,24 +97,30 @@ get '/movies' do
 	erb :movies
 end
 
+# adds a new movie by passing in the parameters
 post '/movies' do
 	Movie.create(params)
 	redirect to('/movies')
 end
 
-# adds a new movie to the movies in production
+# gets add form
 get '/movies/new' do
 	@people = Person.all
 	erb :new_movie
 end
 
-
+# shows a single movie on its own page
 get '/movies/:id' do 
 	@movie = Movie.find(params[:id])
-	@director = Person.find(@movie.person_id)
+	if @movie.person_id
+		@director = Person.find(@movie.person_id)
+	else
+		@director = nil
+	end
 	erb :movie
 end
 
+# edits a movie
 post '/movies/:id' do
 	movie = Movie.find(params[:id])
 	movie.title = params[:title]
@@ -125,13 +130,19 @@ post '/movies/:id' do
 	redirect to('/movies')
 end
 
+#gets movie edit form
 get '/movies/:id/edit' do
 	@movie = Movie.find(params[:id])
-	@director = Person.find(@movie.person_id)
+	if @movie.person_id
+		@director = Person.find(@movie.person_id)
+	else
+		@director = nil
+	end
 	@people = Person.all
 	erb :edit_movie
 end
 
+#removes a movie and all tasks associated with it
 get '/movies/:id/delete' do
 	Task.find_all_by_movie_id(params[:id]).each do |task|
 		task.destroy
@@ -142,30 +153,36 @@ end
 
 #################### End Movie Specific Routes ########################
 
+# lists all of the people in the database
 get '/people' do
 	@people = Person.all
 	erb :people
 end
 
+# adds a new person to the database
 post '/people' do
 	Person.create(params)
 	redirect to('/people')
 end
 
+# gets the new person form
 get '/people/new' do
 	erb :new_person
 end
 
+# list a person on a single page
 get '/people/:id' do 
 	@person = Person.find(params[:id])
 	erb :person
 end
 
+# gets the edit form for a person
 get '/people/:id/edit' do 
 	@person = Person.find(params[:id])
 	erb :edit_person
 end
 
+# saves edits to database
 post '/people/:id/edit' do
 	person = Person.find(params[:id])
 	person.name = params[:name]
@@ -174,6 +191,7 @@ post '/people/:id/edit' do
 	redirect to('/people')
 end
 
+#deletes a person and all tasks and movies associated with them
 get '/people/:id/delete' do
 
 	person = Person.find(params[:id])
@@ -183,7 +201,7 @@ get '/people/:id/delete' do
 	person.tasks.each do |task|
 		task.destroy
 	end
-	Person.find(params[:id]).destroy
+	person.destroy
 	redirect to('/people')
 end
 
