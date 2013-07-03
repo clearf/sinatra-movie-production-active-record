@@ -60,13 +60,12 @@ end
 
 # edits specific movie once form is filled out
 post '/movies/:id/edit' do
-  id = params[:id]
   movie = Movie.find(params[:id])
   movie.name = params[:name]
   movie.director = params[:director]
   movie.release_date = params[:release_date]
   movie.save
-  redirect to "/movies/#{id}"
+  redirect to "/movies/#{movie.id}"
 end
 
 # page for deleting a specific movie
@@ -108,4 +107,36 @@ end
 post '/add_person' do
   person = Person.create(params)
   redirect to '/people'
+end
+
+# page for editing a specific person
+get '/people/:id/edit' do
+  @id = params[:id]
+  @person = Person.find(params[:id])
+  erb :edit_person
+end
+
+# edits specific person once form is filled out
+post '/people/:id/edit' do
+  person = Person.find(params[:id])
+  person.name = params[:name]
+  person.save
+  redirect to "/people/#{person.id}"
+end
+
+# page for deleting a specific person
+get '/people/:id/delete' do
+  @person = Person.find(params[:id])
+  sql_tasks = "select * from tasks where person = #{@id}"
+  @tasks = Task.find_all_by_person_id(params[:id])
+  erb :delete_person
+end
+
+# deletes specific person once form is filled out
+post '/people/:id/delete' do
+  Task.find_all_by_person_id(params[:id]).each do |task|
+    task.destroy
+  end
+  Person.find(params[:id]).destroy
+  redirect to "/people"
 end
