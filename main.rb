@@ -108,12 +108,13 @@ end
 post '/edit_person/:id' do
   id = params[:id]
   name = params[:name]
-  movie = params[:movie]
-  task = params[:task]
+  movie = params[:movie_id]
+  task = params[:task_id]
   @person = Person.find(id)
   @person.name = name
   @person.movie_id = movie
   @person.task_id = task
+  @person.save
   redirect to('/people')
 end
 
@@ -125,6 +126,8 @@ end
 get '/todos/:id' do
   id = params[:id]
   @task = Task.find(id)
+  @movies = Movie.all
+  @people = Person.all
   erb :todo
 end
 
@@ -155,6 +158,13 @@ post '/edit_todo/:id' do
   description = params[:description]
   movie_id = params[:movie_id]
   person_id = params[:person_id]
-  Task.update_all(params)
+  @task = Task.find(id)
+  @movies = Movie.all
+  @people = Person.all
+  @task.name = name
+  @task.description = description
+  @task.movie_id = movie_id
+  @task.person_id = person_id
+  @task.save
   redirect to('/todos')
 end

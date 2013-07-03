@@ -1,16 +1,40 @@
 <div>
-<% @task.each do |todo| %>
-  <form action=/edit_todo/<%= todo['id'] %> method="post">
-    Task: <br/><input type="text" name="name" value="<%= todo['name'] %>"><br/>
-    Description: <input type="text" name="description" value="<%= todo['description'] %>"><br/>
-    Movie: <input type="text" name="movie_id" value="<%= todo['movie_id'] %>"><br/>
-    Person: <input type="text" name="person_id" value="<%= todo['person_id'] %>"><br/><br/>
+  <form action=/edit_todo/<%= @task.id %> method="post">
+    Task: <br/><input type="text" name="name" value="<%= @task.name %>"><br/>
+    Description: <input type="text" name="description" value="<%= @task.description %>"><br/>
+    Movie: <br/><select name="movie">
+      <% @movies.each do |movie| %>
+        <% if movie['id'] == @task.movie_id %>
+          <option value="<%= movie['id'] %>" selected>
+            <%= movie['title'] %>
+          </option>
+        <% else %>
+          <option value="<%= movie['id'] %>">
+            <%= movie['title'] %>
+          </option>
+        <% end %>
+      <% end %>
+    </select><br/>
+    Person: <br/><select name="person_id">
+    <% @people.each do |person| %>
+      <% if person['id'] == @task.person_id %>
+        <option value="<%= person['id'] %>" selected>
+          <%= person['name'] %>
+        </option>
+      <% else %>
+      <option value="<%= person['id'] %>">
+          <%= person['name'] %>
+      </option>
+      <% end %>
+    <% end %>
+  </select>
+  <br/><br/>
     <button>Update</button>
   </form><br/><br/>
-  <form action="/delete/todos/<%= todo['id'] %>" method="post">
+  <form action="/delete/todos/<%= @task.id %>" method="post">
     <button>Delete</button>
   </form>
-<% end %>
+
 <br/>
 <br/>
 <a href="/todos">Back to Tasks</a>

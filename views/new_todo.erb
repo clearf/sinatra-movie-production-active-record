@@ -9,7 +9,7 @@
       </option>
       <% end %>
     </select><br/>
-  Movie: <select name="movie_id">
+  Movie: <br/><select name="movie_id">
     <% @movies.each do |movie| %>
       <option value="<%= movie['id'] %>">
         <%= movie['title'] %>

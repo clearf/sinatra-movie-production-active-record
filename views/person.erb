@@ -1,7 +1,7 @@
 <div>
   <form action=/edit_person/<%= @person.id %> method="post">
     Name: <input type="text" name="name" value="<%= @person.name %>"><br/>
-    Movie: <br/><select name="movie">
+    Movie: <br/><select name="movie_id">
       <% @movies.each do |movie| %>
         <% if movie['id'] == @person.movie_id %>
           <option value="<%= movie['id'] %>" selected>
@@ -15,7 +15,7 @@
       <% end %>
     </select>
     <br/>
-    Task: <br/><select name="task">
+    Task: <br/><select name="task_id">
       <% @tasks.each do |task| %>
         <% if task['id'] == @person.task_id %>
           <option value="<%= task['id'] %>" selected>
