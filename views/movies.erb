@@ -1,4 +1,4 @@
-<h1> Movies: </h1>
+<h1> Movies </h1>
 <%@movies.each do |movie|%>
 	<div class = "listButton"><a href = '/movies/<%=movie["id"]%>'><%=movie["title"]%></a></div><br>
 <%end%>

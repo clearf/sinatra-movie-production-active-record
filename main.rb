@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 require 'pry'
 require 'pg'
 require 'sinatra'
@@ -206,3 +207,16 @@ get '/people/:id/delete' do
 end
 
 
+=======
+require 'pg'
+require 'sinatra'
+require 'sinatra/reloader' if development?
+
+
+
+get '/new_todo'  do
+end
+
+post '/new_todo'  do
+end
+>>>>>>> d2045a22c06761a1dfbc7dba531272a90ab69742
