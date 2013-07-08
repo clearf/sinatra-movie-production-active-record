@@ -1,0 +1,16 @@
+<div>
+	<a href="/movies/<%=@movie['id']%>/edit">Edit Movie</a>
+	<a href="/movies/<%=@movie['id']%>/delete">Delete Movie</a>
+</div>
+
+<div>
+	<h1>Movie Title</h1>
+	<p><%=@movie["title"]%></p>
+
+	<h1>Movie Description</h1>
+	<p><%=@movie["description"]%></p>
+
+	<!--check-->
+	<h1>Should I specify directors?</h1>
+	<p><%=@director["name"]%></p>
+</div>

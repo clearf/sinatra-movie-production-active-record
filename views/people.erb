@@ -1,0 +1,13 @@
+<!-- list people -->
+<div>
+	<a href='people/new'>Add Contact</a>
+</div>
+
+<div>
+	<h1>Contacts</h1>
+	<ul>
+		<%@people.each do |person|%>
+			<a href ='/people/<%=person["id"]%>'><%=person["name"]%></a><br>
+		<%end%>
+	</ul>
+</div>
